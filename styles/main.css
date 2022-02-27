@@ -46,7 +46,8 @@ h1 {
 }
 
 h3#slogan {
-    margin-top: 27px;
+    margin-top: 25px;
+    margin-bottom: 20px;
     font-family: "Copperplate";
 }
 
@@ -73,9 +74,10 @@ img#home-pg-image4 {
 }
 
 @media (max-width:425px) {
-    div#home-pg-col2 {
+    div#home-pg-col2, div#lg-sign-in-button {
         display: none;
     }
+
 }
 
 @media (max-width:768px) {
@@ -86,6 +88,12 @@ img#home-pg-image4 {
 
 @media (max-height:860px) {
     div#optional-home-container {
+        display: none;
+    }
+}
+
+@media (min-width:426px) {
+    div#sm-sign-in-button {
         display: none;
     }
 }
