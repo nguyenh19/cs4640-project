@@ -46,8 +46,7 @@ h1 {
 }
 
 h3#slogan {
-    margin-top: 25px;
-    margin-bottom: 20px;
+    margin-top: 20px;
     font-family: "Copperplate";
 }
 
@@ -56,21 +55,46 @@ h3#slogan {
     padding-right: 0;
 }
 
+button.home-pg {
+    position: relative;
+    margin-top: 20%;
+}
+
 img#home-pg-image1, img#home-pg-image2 {
+    position: relative;
     width: 100%;
-    height: 28rem;
+    height: 65%;
     border-image-width: 0;
 }
 
 img#home-pg-image3 {
+    position: relative;
     width: 100%;
-    height: 100%;
+    height: auto;
     border-image-width: 0;
+    z-index: -1;
 }
 
 img#home-pg-image4 {
+    position: relative;
     width: 100%;
     height: 500px;
+}
+
+/* hr#home-pg-line-decoration {
+    position: relative;
+    width: 100%;
+    height: 5px;
+    border: 10px solid red;
+    align-items: right;
+    justify-content: end;
+    margin-bottom: 50%;
+} */
+
+@media (max-height: 703px) { 
+    img#home-pg-image1, img#home-pg-image2 {
+        height: 80%;
+    }
 }
 
 @media (max-width:425px) {
