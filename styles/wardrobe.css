@@ -1,8 +1,3 @@
-html, body {
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
 .navbar{
     background-color: #A30000;
     padding: 10px;
@@ -11,7 +6,6 @@ html, body {
 .createOutfit{
     background-color: #A30000;
     margin-top: 50px;
-    margin-left: 175px;
     font-family: 'Amehysta';
     letter-spacing: 5px;
     font-size: 20px;
@@ -21,7 +15,7 @@ html, body {
 
 body {
     padding-top: 90px;
-  }
+}
 
 .navbar-brand{
     padding-left: 50px;
@@ -48,6 +42,7 @@ body {
 
 .content{
     padding-top: 10px;
+    padding-left: 50px;
 }
 
 .myfits{
@@ -75,7 +70,7 @@ input{
     width: 100%;
     height: 400px;
     max-height: 400px;
-    padding-left: 80px;
+    padding-left: 75px;
 }
 
 .wadrobeSelection{
@@ -85,7 +80,6 @@ input{
 
 .imgs{
     padding-top: 80px;
-    padding-right: 75px;
 }
 
 .img-fluid{
@@ -96,10 +90,22 @@ input{
 .addToCloset{
     position: absolute;
     background-color: #A30000;
-    margin-top: 145px;
+    margin-top: 110px;
     font-family: 'Amehysta';
     letter-spacing: 5px;
     font-size: 20px;
     height: 50px;
     width: 350px;
+}
+
+.usability{
+    font-family: 'Amehysta';
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.userDescription{
+    font-family: 'Amehysta';
+    font-size: 10px;
+    letter-spacing: 2px;
 }
