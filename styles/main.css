@@ -138,3 +138,48 @@ img#home-pg-image4 {
 #optional-home-container {
     height: 500px;
 }
+
+.header{
+    position: static; 
+    color: white;
+    font-family: 'Amehysta';
+    letter-spacing: 20px;
+    font-size: 70px;
+    margin-top: 40px;
+    padding-right: 500px;
+}
+
+.redline{
+    position: static; 
+    margin-left: 350px;
+}
+
+.subheader{
+    position: static; 
+    color: white;
+    font-family: 'Amehysta';
+    letter-spacing: 5px;
+    font-size: 22px;
+    margin-left: 200px;
+    margin-top: 20px;
+}
+
+.thug{
+    width: 100%;
+    height: auto;
+}
+
+.girl{
+    width: 100%;
+    height: 91.65%;
+}
+
+.home{
+    color: white;
+    background-color: #a30000b4;
+    width: 200px;
+    font-family: 'Amehysta';
+    font-size: 20px;
+    margin-right: 100px;
+    margin-bottom: 10px;
+}
