@@ -39,7 +39,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 0.5rem;
 }
 
-h1 {
+h1#brand {
     font-family: "Copperplate";
     font-size: 49px;
     font-weight: bold;
@@ -58,6 +58,10 @@ h3#slogan {
 button.home-pg {
     position: relative;
     margin-top: 20%;
+}
+
+button.home-pg:hover {
+    transform: scale(1.25);
 }
 
 img#home-pg-image1, img#home-pg-image2 {
