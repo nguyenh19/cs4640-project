@@ -71,16 +71,35 @@ body {
     background-color: grey;
 }
 
-.carousel-item img{
-    width: auto;
-    height: 800px;
-    max-height: 800px;
-}
-
-
 input{
     width: 100%;
-    height: 500px;
-    max-height: 500px;
-    padding-left: 50px;
+    height: 400px;
+    max-height: 400px;
+    padding-left: 80px;
+}
+
+.wadrobeSelection{
+    background-color: rgb(190, 190, 190);
+    padding-bottom: 250px;
+}
+
+.imgs{
+    padding-top: 80px;
+    padding-right: 75px;
+}
+
+.img-fluid{
+    width: 100%;
+    height: 100%;
+}
+
+.addToCloset{
+    position: absolute;
+    background-color: #A30000;
+    margin-top: 145px;
+    font-family: 'Amehysta';
+    letter-spacing: 5px;
+    font-size: 20px;
+    height: 50px;
+    width: 350px;
 }
