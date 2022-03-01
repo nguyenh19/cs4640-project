@@ -10,21 +10,23 @@ body {
     background-color: #FFF7EB;
 }
 
-nav {
-    background-color: #C70039;
+.navbar{
+    background-color: #A30000;
+    padding: 10px;
 }
 
-.navbar-brand {
-    padding-left: 15px;
-    font-weight: bold;
-    font-family: "Copperplate";
-    font-size: 30px;
+.navbar-brand{
+    padding-left: 50px;
+    font-size: 25px;
+    font-family: 'Amehysta';
+    letter-spacing: 6px;
 }
 
-.nav-link {
-    font-family: "Copperplate";
-    font-size: 20px;
-    font-weight: bold;
+
+.nav-item{
+    padding-left: 20px;
+    font-family: 'Amehysta';
+    font-size: 15px;
 }
 
 #sign-in {

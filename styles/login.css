@@ -1,29 +1,4 @@
 @import "main.css";
-/* body {
-    background-color: #FFF7EB;
-}
-
-nav {
-    background-color: #C70039;
-}
-.navbar-brand {
-    padding-left: 15px;
-    font-weight: bold;
-    font-family: "Copperplate";
-    font-size: 30px;
-}
-
-.nav-link {
-    font-family: "Copperplate";
-    font-size: 20px;
-    font-weight: bold;
-}
-
-#sign-in {
-    font-weight: bold;
-    font-size: 20px;
-    color: black;
-} */
 
 #login-card {
     margin-top: 15px;
@@ -32,8 +7,8 @@ nav {
 }
 
 #login-heading {
-    margin-top: 2.5rem;
-    font-family: "Copperplate";
+    margin-top: 4rem;
+    font-family: "Amerhyst";
     font-size: 60px;
     color: #6B6965;
 }
