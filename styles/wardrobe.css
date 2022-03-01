@@ -1,8 +1,3 @@
-html, body {
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
 .navbar{
     background-color: #A30000;
     padding: 10px;
@@ -10,18 +5,17 @@ html, body {
 
 .createOutfit{
     background-color: #A30000;
-    margin-top: 50px;
-    margin-left: 175px;
+    margin-top: 75px;
     font-family: 'Amehysta';
     letter-spacing: 5px;
     font-size: 20px;
-    height: 50px;
-    width: 350px;
+    height: 50%;
+    width: 75%;
 }
 
 body {
     padding-top: 90px;
-  }
+}
 
 .navbar-brand{
     padding-left: 50px;
@@ -48,6 +42,7 @@ body {
 
 .content{
     padding-top: 10px;
+    padding-left: 50px;
 }
 
 .myfits{
@@ -71,24 +66,23 @@ body {
     background-color: grey;
 }
 
-input{
-    width: 100%;
-    height: 400px;
-    max-height: 400px;
-    padding-left: 80px;
+.fitted{
+    width: 50%;
+    height: 100%;
 }
+
+.fits{
+    padding-left: 60px;
+}
+
+
 
 .wadrobeSelection{
     background-color: rgb(190, 190, 190);
-    padding-bottom: 250px;
+    padding-bottom: 200px;
 }
 
-.imgs{
-    padding-top: 80px;
-    padding-right: 75px;
-}
-
-.img-fluid{
+.hi{
     width: 100%;
     height: 100%;
 }
@@ -96,10 +90,22 @@ input{
 .addToCloset{
     position: absolute;
     background-color: #A30000;
-    margin-top: 145px;
+    margin-top: 25px;
     font-family: 'Amehysta';
     letter-spacing: 5px;
     font-size: 20px;
-    height: 50px;
-    width: 350px;
+    height: 6%;
+    width: 40%;
+}
+
+.usability{
+    font-family: 'Amehysta';
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+.userDescription{
+    font-family: 'Amehysta';
+    font-size: 10px;
+    letter-spacing: 2px;
 }
