@@ -1,0 +1,105 @@
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.navbar{
+    background-color: #A30000;
+    padding: 10px;
+}
+
+.createOutfit{
+    background-color: #A30000;
+    margin-top: 50px;
+    margin-left: 175px;
+    font-family: 'Amehysta';
+    letter-spacing: 5px;
+    font-size: 20px;
+    height: 50px;
+    width: 350px;
+}
+
+body {
+    padding-top: 90px;
+  }
+
+.navbar-brand{
+    padding-left: 50px;
+    font-size: 25px;
+    font-family: 'Amehysta';
+    letter-spacing: 6px;
+}
+
+
+.nav-item{
+    padding-left: 20px;
+    font-family: 'Amehysta';
+    font-size: 15px;
+}
+
+.welcome{
+    font-family: 'Amehysta';
+    letter-spacing: 6px; 
+}
+
+.welMessage{
+    font-size: 30px;    
+}
+
+.content{
+    padding-top: 10px;
+}
+
+.myfits{
+    display: inline-block;
+    font-family: 'Amehysta';
+    letter-spacing: 6px; 
+    font-size: 20px;
+    border-bottom: 5px solid black;
+    padding-left: 275px;
+    padding-right: 275px;
+    padding-bottom: 40px;
+}
+
+.mycloset{
+    font-family: 'Amehysta';
+    letter-spacing: 6px; 
+    font-size: 20px;
+}
+
+.wardrobeOptions{
+    background-color: grey;
+}
+
+input{
+    width: 100%;
+    height: 400px;
+    max-height: 400px;
+    padding-left: 80px;
+}
+
+.wadrobeSelection{
+    background-color: rgb(190, 190, 190);
+    padding-bottom: 250px;
+}
+
+.imgs{
+    padding-top: 80px;
+    padding-right: 75px;
+}
+
+.img-fluid{
+    width: 100%;
+    height: 100%;
+}
+
+.addToCloset{
+    position: absolute;
+    background-color: #A30000;
+    margin-top: 145px;
+    font-family: 'Amehysta';
+    letter-spacing: 5px;
+    font-size: 20px;
+    height: 50px;
+    width: 350px;
+}
