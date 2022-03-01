@@ -20,6 +20,14 @@
     color: black;
 }
 
+/* a:link {
+    color:#6B6965;
+} */
+
+a:visited {
+    color: #6B6965;
+}
+
 .card {
     background-color: #FFF7EB;
 }
