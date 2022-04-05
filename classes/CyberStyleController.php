@@ -18,6 +18,9 @@ class CyberStyleController {
             case "wardrobe":
                 $this->wardrobe();
                 break;
+            case "view-all-clothes":
+                $this->view_all_clothes();
+                break;
             case "add-to-closet":
                 $this->add_to_closet();
                 break;
@@ -38,6 +41,11 @@ class CyberStyleController {
 
     public function sign_up() {
         if (isset($_POST["email"])) {
+            $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
+            if ($user_id === true) {
+                $error_msg = "You already have an account";
+                header("Location: ?command=login");
+            }
             $insert = $this->db->query("insert into users (name, email, password) values (?, ?, ?);", 
             "sss", $_POST["name"], $_POST["email"], 
             password_hash($_POST["password"], PASSWORD_DEFAULT));
@@ -46,6 +54,7 @@ class CyberStyleController {
             } 
             $_SESSION["name"] = $_POST["name"];
             $_SESSION["email"] = $_POST["email"];
+            setcookie("logged_in", true, time() + 3600);
             header("Location: ?command=wardrobe");
         }
 
@@ -71,64 +80,47 @@ class CyberStyleController {
         include('templates/login.php');
     }
 
+    public function view_all_clothes() {
+        include('templates/view-all-clothes.php');
+    }
+
     public function add_to_closet() {
+        if (isset($_POST["name"])) {
+            $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
+            $user_id = $user_id[0]["id"];
+            $name = "_" . $user_id . "_" . $_FILES['file']['name'];
+            $target_dir = "images/users/";
+            $target_file = $target_dir . "_" . $user_id . "_" . basename($_FILES["file"]["name"]);
+            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+            $extensions_arr = array("jpg","jpeg","png","gif");
+            // Check extension
+            if( in_array($imageFileType,$extensions_arr) ){
+              // Upload file
+              if(move_uploaded_file($_FILES['file']['tmp_name'],$target_dir.$name)){
+                 // Convert to base64 
+                 $image_base64 = base64_encode(file_get_contents('images/users/'.$name) );
+                 $image = 'data:image/'.$imageFileType.';base64,'.$image_base64;
+              }
+            }
+            if (isset($_POST["brand"])) {
+                $this->db->query("insert into clothing (user_id, category, color, brand, name, picture) 
+                values (?, ?, ?, ?, ?, ?);", "isssss", $user_id, $_POST["category"], $_POST["color"],
+                $_POST["brand"], $_POST["name"], $name);
+                header("Location: ?command=wardrobe");
+            } else {
+                $this->db->query("insert into clothing (user_id, category, color, name, picture) 
+                values (?, ?, ?, ?, ?, ?);", "isssb", $user_id, $_POST["category"], $_POST["color"], 
+                $_POST["name"], $name);
+                header("Location: ?command=wardrobe");
+            }
+        }
         include('templates/add-to-closet.php');
     }
 
     public function wardrobe() {
         include('templates/wardrobe.php');
     }
-
-    public function transaction_history() {
-        $user_ids = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
-        $id = $user_ids[0]["id"];
-        $user_categories_and_balances = $this->db->query("select category, balance from Users_Balance_By_Category
-        where user_id = ?;", "i", $id);
-        $all_balance = $this->db->query("select balance from Users_Balance_By_Category where user_id = ?;",
-        "i", $id);
-        $total_balance = 0;
-        foreach($all_balance as $balance) {
-            $total_balance += $balance["balance"];
-        }
-        $transactions = $this->db->query("select name, t_date, amount, type, category from Transactions where user_id = ?;", "i", $id);
-        $date = array_column($transactions, 't_date');
-        array_multisort($date, SORT_DESC, $transactions);
-        include('templates/TransactionHistory.php');
-    }
-
-    public function new_transaction() {
-        if (isset($_POST["amount"])) {
-            if (isset($_POST["type"]) && $_POST["type"] !== "Select the Type of Transaction"
-            && isset($_POST["category"]) && $_POST["category"] !== "Select the Category of Transaction") {
-                $user_ids = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
-                $id = $user_ids[0]["id"];
-                $user_categories_assoc = $this->db->query("select category from Users_Balance_By_Category
-                where user_id = ?;", "i", $id);
-                $amount = $_POST["amount"];
-                if ($_POST["type"] === "Debit") {
-                    $amount = $_POST["amount"]-(2*$_POST["amount"]);
-                }
-                $user_categories = array();
-                foreach($user_categories_assoc as $item) {
-                    array_push($user_categories, $item["category"]);
-                }
-                print_r($user_categories);
-                if (!in_array($_POST["category"], $user_categories)) {
-                    $this->db->query("insert into Users_Balance_By_Category (user_id, category, balance)
-                    values (?, ?, ?);", "isi", $id, $_POST["category"], $amount);
-                } else {
-                    $this->db->query("update Users_Balance_By_Category set balance = (balance + ?)
-                     where user_id = ? and category = ?;", "iis", $amount, $id, $_POST["category"]);
-                }
-                $insert = $this->db->query("insert into Transactions (user_id, category, t_date, amount, name, type)
-                 values (?, ?, ?, ?, ?, ?);", 
-                "ississ", $id, $_POST["category"], $_POST["date"], $amount, $_POST["transaction_name"], $_POST["type"]);
-                $error_msg = "Select the type and category";
-            }
-            header("Location: ?command=transaction-history");
-        }
-        include('templates/NewTransaction.php');
-    }
+           
 
     public function logout() {
         setcookie("logged_in", "", time() - 3600);
