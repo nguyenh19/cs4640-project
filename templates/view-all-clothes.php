@@ -15,14 +15,14 @@
     </head>
     <body>
         <nav id = "navbar-ex" class="navbar fixed-top navbar-expand-lg navbar-dark">
-            <a class="navbar-brand" 
+            <a class="navbar-brand"
             <?php
                 if (isset($_COOKIE["logged_in"]) && $_COOKIE["logged_in"] === true) {
                     echo "href='?command=wardrobe'";
                 } else {
                     echo "href='?command=home'";
                 }
-            ?>
+            ?> 
             >CYBER STYLE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -44,7 +44,7 @@
               </ul>
             </div>
         </nav>
-        <div class = "container">
+       <!-- <div class = "container">
             <div class = "row">
                 <div class = "col d-flex justify-content-center welcome">
                     <h1 class = "welMessage">WELCOME, <?=$_SESSION["name"]?></h1>
@@ -71,63 +71,28 @@
                 <div class = "container d-flex justify-content-center fixate">
                     <button type="button" class="btn btn-dark createOutfit">CREATE NEW OUTFIT</button>
                 </div>
-            </div>
-            <div class = "col">
-                <h1 class = "userDescription">CLICK ON A CATEGORY TO VIEW YOUR ITEMS</h1>
-                <h1 class = "mycloset d-flex justify-content-center">MY CLOSET</h1>
+            </div>-->
+            <!--<div class = "col">-->
+                <h1 class = "mycloset d-flex justify-content-center">MY PIECES</h1>
                 <div class="container wadrobeSelection">
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 imgs">
-                    <?php 
+                    <div class="row row-cols-md-1 row-cols-md-2 row-cols-md-3 imgs">
+                        <?php 
                             $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
                             $clothes = $this->db->query("select * from clothing where user_id = ?;", "i", $user_id[0]["id"]);
-                    ?>
-                    <? if (!empty($clothes)): ?>
-                        <?php
                             foreach($clothes as $piece) {
                                 $image = $piece["picture"];
                                 echo "<div class='col mt-4'>
                                 <input type='image' src='./images/users/{$image}' class='img-fluid hi' alt='image'>
                                 </div>";
-                            }     
+                            }
                         ?>
-                    <? else: ?>
-                        <div class="col mt-4">
-                            <input type="image" src = "images/tee.png" class="img-fluid hi" alt="image">
-                        </div>
-                        <div class="col mt-4">
-                            <input type="image" src = "images/pants.png" class="img-fluid hi" alt="image">
-                        </div>
-                        <div class="col mt-4">
-                            <input type="image" src = "images/jacket.png" class="img-fluid hi" alt="image">
-                        </div>
-                        <div class="col mt-4">
-                            <input type="image" src = "images/dress.png" class="img-fluid hi" alt="image">
-                        </div>
-                        <div class="col mt-4">
-                            <input type="image" src = "images/shoes.png" class="img-fluid hi" alt="image">
-                        </div>
-                        <div class="col mt-4">
-                            <input type="image" src = "images/hat.png" class="img-fluid hi" alt="image">
-                        </div>
-                    <? endif; ?>
                     </div>
                     <div class = "container d-flex justify-content-center">
-                        <a href="?command=view-all-clothes" class="btn btn-dark addToCloset">VIEW ALL</a>
-                        <a href="?command=add-to-closet" class="btn btn-dark addToCloset">ADD</a>
+                        <a href="?command=add-to-closet" class="btn btn-dark addToCloset">ADD TO CLOSET</a>
                     </div>
                 </div>
-            </div>
+            <!--</div>-->
         </div>
-
-        <!-- Optional JavaScript; choose one of the two! -->
-
-        <!-- Option 1: Bootstrap Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-
-        <!-- Option 2: Separate Popper and Bootstrap JS -->
-        <!--
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
-        -->
     </body>
 </html>

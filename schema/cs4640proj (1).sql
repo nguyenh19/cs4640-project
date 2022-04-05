@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 03, 2022 at 03:24 AM
+-- Generation Time: Apr 05, 2022 at 04:26 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.28
 
@@ -34,7 +34,7 @@ CREATE TABLE `clothing` (
   `color` varchar(255) NOT NULL,
   `brand` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `picture` blob NOT NULL,
+  `picture` longtext NOT NULL,
   `wishlist` tinyint(1) DEFAULT 0,
   `link` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -81,14 +81,6 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
-(1, 'Hien Nguyen', 'teddybelly1@gmail.com', '$2y$10$HIQcZk2469Y8ggUnhc9pmOMRu6wraKwgdAi2oqi7BBBW2NK7K7Jn6'),
-(2, 'Katelyn Redi', 'kmr8wyd@virginia.edu', '$2y$10$qyDvH41L1vHjq5OQ41Z5KuIIU48qCLH.V/4Y7xfrA.MgBLXSKGpy2');
-
---
 -- Indexes for dumped tables
 --
 
@@ -126,7 +118,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `clothing`
 --
 ALTER TABLE `clothing`
-  MODIFY `clothing_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `clothing_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `outfits`
@@ -138,7 +130,7 @@ ALTER TABLE `outfits`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- Constraints for dumped tables

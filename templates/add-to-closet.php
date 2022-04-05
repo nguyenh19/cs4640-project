@@ -35,7 +35,15 @@
 <body>
     <div class="row">
     <nav id = "navbar-ex" class="navbar fixed-top navbar-expand-lg navbar-dark">
-            <a class="navbar-brand" href="?command=home">CYBER STYLE</a>
+            <a class="navbar-brand" 
+            <?php
+                if (isset($_COOKIE["logged_in"]) && $_COOKIE["logged_in"] === true) {
+                    echo "href='?command=wardrobe'";
+                } else {
+                    echo "href='?command=home'";
+                }
+            ?>
+            >CYBER STYLE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -54,7 +62,13 @@
         </div>
         <div class="card border-0" id="login-card">
             <div class="card-body">
-                <form action="?command=sign-up" method="post">
+
+<?php
+   echo "<pre>";
+   print_r($_FILES);
+   echo "</pre>";
+   ?>
+                <form action="?command=add-to-closet" method="post" enctype="multipart/form-data">
                   <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" required>

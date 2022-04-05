@@ -93,9 +93,9 @@ body {
 }
 
 .addToCloset{
-    position: absolute;
+    position: relative;
     background-color: #A30000;
-    margin-top: 25px;
+    margin: 25px;
     font-family: 'Amehysta';
     letter-spacing: 5px;
     font-size: 20px;
