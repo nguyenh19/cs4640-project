@@ -27,6 +27,9 @@ class CyberStyleController {
             case "delete-from-closet":
                 $this->delete_from_closet();
                 break;
+            case "search-clothes":
+                $this->search_clothes();
+                break;
             case "logout":
                 $this->logout();
             case "login":
@@ -87,6 +90,28 @@ class CyberStyleController {
     }
 
     public function view_all_clothes() {
+        // if (isset($_POST["search"])) {
+        //     $search_tag = $_POST["search"];
+        //     $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
+        //     $applicable_clothes = $this->db->query("select * from clothing where (user_id = ?) and ((category like ?)
+        //     or (brand like ?) or (color like ?) or (name like ?));",
+        //     "issss", $user_id, $search_tag, $search_tag, $search_tag, $search_tag);
+        //     print_r($applicable_clothes);
+        //     $_SESSION["active-search"] = true;
+        // }
+        include('templates/view-all-clothes.php');
+    }
+
+    public function search_clothes() {
+        if (isset($_POST["search"])) {
+            $search_tag = $_POST["search"];
+            $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
+            $user_id = $user_id[0]["id"];
+            $applicable_clothes = $this->db->query("select * from clothing where (user_id = ?) and ((category like ?)
+            or (brand like ?) or (color like ?) or (name like ?));",
+            "issss", $user_id, $search_tag, $search_tag, $search_tag, $search_tag);
+            $_SESSION["active-search"] = true;
+        }
         include('templates/view-all-clothes.php');
     }
 

@@ -74,8 +74,25 @@
             </div>-->
             <!--<div class = "col">-->
                 <h1 class = "mycloset d-flex justify-content-center">MY PIECES</h1>
+                <div class="container d-flex justify-content-end">
+                <form style="float:right; margin: 20px" action="?command=search-clothes" method="post">
+                    <input id="search" name="search" type="text" placeholder="Search for an item">
+                    <input id="submit" type="submit" value="Search">
+                </form>
+                </div>
                 <div class="container wadrobeSelection">
                     <div class="row row-cols-md-1 row-cols-md-2 row-cols-md-3 imgs">
+                    <? if (isset($_SESSION['active-search']) && $_SESSION["active-search"] === true): ?>
+                        <?php
+                            unset($_SESSION['active-search']);
+                            foreach($applicable_clothes as $piece) {
+                                $image = $piece["picture"];
+                                echo "<div class='col mt-4'>
+                                <input type='image' src='./images/users/{$image}' class='img-fluid hi' alt='image'>
+                                </div>";
+                            }
+                        ?>
+                    <? else: ?>
                         <?php 
                             $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
                             $clothes = $this->db->query("select * from clothing where user_id = ?;", "i", $user_id[0]["id"]);
@@ -86,6 +103,7 @@
                                 </div>";
                             }
                         ?>
+                    <? endif; ?>
                     </div>
                     <div class = "container d-flex justify-content-center">
                         <a href="?command=delete-from-closet" class="btn btn-dark addToCloset">DELETE ITEMS</a>
