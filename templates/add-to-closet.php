@@ -37,7 +37,7 @@
     <nav id = "navbar-ex" class="navbar fixed-top navbar-expand-lg navbar-dark">
             <a class="navbar-brand" 
             <?php
-                if (isset($_COOKIE["logged_in"]) && $_COOKIE["logged_in"] === true) {
+                if (isset($_COOKIE["logged_in"]) && $_COOKIE["logged_in"] === "true") {
                     echo "href='?command=wardrobe'";
                 } else {
                     echo "href='?command=home'";
@@ -62,12 +62,6 @@
         </div>
         <div class="card border-0" id="login-card">
             <div class="card-body">
-
-<?php
-   echo "<pre>";
-   print_r($_FILES);
-   echo "</pre>";
-   ?>
                 <form action="?command=add-to-closet" method="post" enctype="multipart/form-data">
                   <div class="form-group">
                     <label for="name">Name</label>
