@@ -47,13 +47,6 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ms-auto">
-                  <li class="nav-item">
-                  <a class="nav-link" href ="?command=sign-up">SIGN UP</a>
-                  </li>
-              </ul>
-            </div>
         </nav>
     </div>
     <div class="row justify-content-center" style="margin-top: 20px;">
@@ -64,6 +57,9 @@
         <div class="card border-0" id="login-card">
             <div class="card-body">
                 <form action="?command=login" method="post">
+                <? if (isset($_SESSION['login_error_msg']))?>
+                    <h6><?=$_SESSION['login_error_msg']?></h6>
+                    <?unset($_SESSION['login_error_msg'])?>
                 <div class="form-group">
                     <label for="email">Email address</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">

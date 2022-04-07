@@ -17,7 +17,7 @@
         <nav id = "navbar-ex" class="navbar fixed-top navbar-expand-lg navbar-dark">
             <a class="navbar-brand"
             <?php
-                if (isset($_COOKIE["logged_in"]) && $_COOKIE["logged_in"] === true) {
+                if (isset($_COOKIE["logged_in"]) && $_COOKIE["logged_in"] == "true") {
                     echo "href='?command=wardrobe'";
                 } else {
                     echo "href='?command=home'";
@@ -88,6 +88,7 @@
                         ?>
                     </div>
                     <div class = "container d-flex justify-content-center">
+                        <a href="?command=delete-from-closet" class="btn btn-dark addToCloset">DELETE ITEMS</a>
                         <a href="?command=add-to-closet" class="btn btn-dark addToCloset">ADD TO CLOSET</a>
                     </div>
                 </div>

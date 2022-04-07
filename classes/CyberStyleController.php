@@ -24,6 +24,9 @@ class CyberStyleController {
             case "add-to-closet":
                 $this->add_to_closet();
                 break;
+            case "delete-from-closet":
+                $this->delete_from_closet();
+                break;
             case "logout":
                 $this->logout();
             case "login":
@@ -42,20 +45,23 @@ class CyberStyleController {
     public function sign_up() {
         if (isset($_POST["email"])) {
             $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
-            if ($user_id === true) {
-                $error_msg = "You already have an account";
+            if ($user_id === false) {
+                $insert = $this->db->query("insert into users (name, email, password) values (?, ?, ?);", 
+                "sss", $_POST["name"], $_POST["email"], 
+                password_hash($_POST["password"], PASSWORD_DEFAULT));
+                if ($insert === false) {
+                    $error_msg = "Error inserting user";
+                }
+                setcookie("logged_in", "true", time() + 3600); 
+                $_SESSION["name"] = $_POST["name"];
+                $_SESSION["email"] = $_POST["email"];
+                header("Location: ?command=wardrobe");
+            }
+            else {
+                $msg = "You already have an account";
+                $_SESSION["login_error_msg"] = $msg;
                 header("Location: ?command=login");
             }
-            $insert = $this->db->query("insert into users (name, email, password) values (?, ?, ?);", 
-            "sss", $_POST["name"], $_POST["email"], 
-            password_hash($_POST["password"], PASSWORD_DEFAULT));
-            if ($insert === false) {
-                $error_msg = "Error inserting user";
-            } 
-            $_SESSION["name"] = $_POST["name"];
-            $_SESSION["email"] = $_POST["email"];
-            setcookie("logged_in", true, time() + 3600);
-            header("Location: ?command=wardrobe");
         }
 
         include('templates/sign-up.html');
@@ -68,9 +74,9 @@ class CyberStyleController {
                 $error_msg = "Error checking for user";
             } else if (!empty($data)) {
                 if (password_verify($_POST["password"], $data[0]["password"])) {
+                    setcookie("logged_in", "true", time() + 3600);
                     $_SESSION['name'] = $data[0]["name"];
                     $_SESSION['email'] = $data[0]["email"];
-                    setcookie("logged_in", true, time() + 3600);
                     header("Location: ?command=wardrobe");
                 } else {
                     $error_msg = "Wrong password";
@@ -82,6 +88,16 @@ class CyberStyleController {
 
     public function view_all_clothes() {
         include('templates/view-all-clothes.php');
+    }
+
+    public function delete_from_closet() {
+        if (isset($_POST['delete_clothes'])) {
+            foreach($_POST['delete_clothes'] as $clothing_id) {
+                $this->db->query("delete from clothing where clothing_id = ?", "i", $clothing_id);
+            }
+            header("Location: ?command=view-all-clothes");
+        }
+        include('templates/delete-from-closet.php');
     }
 
     public function add_to_closet() {
