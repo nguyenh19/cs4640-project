@@ -90,6 +90,13 @@ class CyberStyleController {
     }
 
     public function view_all_clothes() {
+        $user = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
+        $array = $this->db->query("select * from clothing where user_id = ?;", "i", $user[0]["id"]);
+        $rows = array();
+        foreach ($array as $i) {
+            $rows[] = $i;
+        }
+        print json_encode($rows);
         // if (isset($_POST["search"])) {
         //     $search_tag = $_POST["search"];
         //     $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
