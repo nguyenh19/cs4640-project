@@ -78,7 +78,7 @@
                 <form action="?command=delete-from-closet" method="post">
                     <div class="row row-cols-md-1 row-cols-md-2 row-cols-md-3 imgs">
                         <?php 
-                            $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
+                            $user_id = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
                             $clothes = $this->db->query("select * from clothing where user_id = ?;", "i", $user_id[0]["id"]);
                             $clothing_to_delete = array();
                             foreach($clothes as $piece) {

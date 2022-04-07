@@ -47,7 +47,7 @@ class CyberStyleController {
 
     public function sign_up() {
         if (isset($_POST["email"])) {
-            $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
+            $user_id = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
             if ($user_id === false) {
                 $insert = $this->db->query("insert into users (name, email, password) values (?, ?, ?);", 
                 "sss", $_POST["name"], $_POST["email"], 
@@ -90,7 +90,7 @@ class CyberStyleController {
     }
 
     public function view_all_clothes() {
-        $user = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
+        $user = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
         $array = $this->db->query("select * from clothing where user_id = ?;", "i", $user[0]["id"]);
         $rows = array();
         foreach ($array as $i) {
@@ -112,7 +112,7 @@ class CyberStyleController {
     public function search_clothes() {
         if (isset($_POST["search"])) {
             $search_tag = $_POST["search"];
-            $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
+            $user_id = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
             $user_id = $user_id[0]["id"];
             $applicable_clothes = $this->db->query("select * from clothing where (user_id = ?) and ((category like ?)
             or (brand like ?) or (color like ?) or (name like ?));",
@@ -134,7 +134,7 @@ class CyberStyleController {
 
     public function add_to_closet() {
         if (isset($_POST["name"])) {
-            $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
+            $user_id = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
             $user_id = $user_id[0]["id"];
             $name = "_" . $user_id . "_" . $_FILES['file']['name'];
             $target_dir = "images/users/";
