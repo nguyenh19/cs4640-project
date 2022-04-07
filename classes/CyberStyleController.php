@@ -46,7 +46,9 @@ class CyberStyleController {
     }
 
     public function sign_up() {
-        if (isset($_POST["email"])) {
+        $message = "";
+        $regex = "/^([a-zA-Z0-9\.]+@+[a-zA-Z]+(\.)+[a-zA-Z]{2,3})$/";
+        if (isset($_POST["email"]) && preg_match($regex, $_POST["email"])) {
             $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
             if ($user_id === false) {
                 $insert = $this->db->query("insert into users (name, email, password) values (?, ?, ?);", 
@@ -66,12 +68,19 @@ class CyberStyleController {
                 header("Location: ?command=login");
             }
         }
-
-        include('templates/sign-up.html');
+        else {
+            $message = "<div class='alert alert-danger' role='alert'> Invalid Input! Please enter the correct email format using an @. </div>";
+        }
+        include('templates/sign-up.php');
     }
 
     public function login() {
+        $message = "";
         if (isset($_POST["email"])) {
+            $regex = "/^([a-zA-Z0-9\.]+@+[a-zA-Z]+(\.)+[a-zA-Z]{2,3})$/";
+            if (!preg_match($regex, $_POST["email"])){
+                $message = "<div class='alert alert-danger' role='alert'> Invalid Input! Please enter the correct email format using an @. </div>";
+            }
             $data = $this->db->query("select * from users where email = ?;", "s", $_POST["email"]);
             if ($data === false) {
                 $error_msg = "Error checking for user";
