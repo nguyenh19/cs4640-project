@@ -77,20 +77,6 @@
                 <h1 class = "mycloset d-flex justify-content-center">MY CLOSET</h1>
                 <div class="container wadrobeSelection">
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 imgs">
-                    <?php 
-                            $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
-                            $clothes = $this->db->query("select * from clothing where user_id = ?;", "i", $user_id[0]["id"]);
-                    ?>
-                    <? if (!empty($clothes)): ?>
-                        <?php
-                            foreach($clothes as $piece) {
-                                $image = $piece["picture"];
-                                echo "<div class='col mt-4'>
-                                <input type='image' src='./images/users/{$image}' class='img-fluid hi' alt='image'>
-                                </div>";
-                            }     
-                        ?>
-                    <? else: ?>
                         <div class="col mt-4">
                             <input type="image" src = "images/tee.png" class="img-fluid hi" alt="image">
                         </div>
@@ -109,7 +95,6 @@
                         <div class="col mt-4">
                             <input type="image" src = "images/hat.png" class="img-fluid hi" alt="image">
                         </div>
-                    <? endif; ?>
                     </div>
                     <div class = "container d-flex justify-content-center">
                         <a href="?command=view-all-clothes" class="btn btn-dark addToCloset">VIEW ALL</a>

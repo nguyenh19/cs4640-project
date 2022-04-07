@@ -74,19 +74,33 @@
             </div>-->
             <!--<div class = "col">-->
                 <h1 class = "mycloset d-flex justify-content-center">MY PIECES</h1>
-                <div class="container wadrobeSelection">
-                    <div class="row row-cols-md-1 row-cols-md-2 row-cols-md-3 imgs">
-                        <?php 
-                            $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
-                            $clothes = $this->db->query("select * from clothing where user_id = ?;", "i", $user_id[0]["id"]);
-                            foreach($clothes as $piece) {
-                                $image = $piece["picture"];
-                                echo "<div class='col mt-4'>
-                                <input type='image' src='./images/users/{$image}' class='img-fluid hi' alt='image'>
-                                </div>";
-                            }
-                        ?>
-                    </div>
+                <div class="container wadrobeSelection" style = "background-color: #202020">
+                <div class="row" style="margin-top: 20px">
+                        <div class="col-xs-8 mx-auto">
+                            <table class="table table-striped table-dark">
+                                <thead>
+                                    <tr>
+                                    <th scope = "col">Category </th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Image </th>
+                                    <th scope="col">Color </th>
+                                    <th scope="col">Brand </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                        $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
+                                        $clothes = $this->db->query("select * from clothing where user_id = ?;", "i", $user_id[0]["id"]);
+                                        foreach($clothes as $piece) {
+                                            $image = $piece["picture"];
+                                            echo "<tr><td>" . $piece["category"] . "</td><td>" . $piece["name"] . "</td><td><input type='image' src='./images/users/{$image}' class='img-fluid hi' style = 'width:200px; height:200px;' alt='image'></td><td>" . $piece["color"] . "</td><td>" . $piece["brand"] . "</td></tr>";
+                                        }
+
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
                     <div class = "container d-flex justify-content-center">
                         <a href="?command=add-to-closet" class="btn btn-dark addToCloset">ADD TO CLOSET</a>
                     </div>
