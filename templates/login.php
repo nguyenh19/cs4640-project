@@ -62,7 +62,8 @@
                     <?unset($_SESSION['login_error_msg'])?>
                 <div class="form-group">
                     <label for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Enter email">
+                    <?=$message?>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
