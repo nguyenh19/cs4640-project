@@ -46,32 +46,46 @@ class CyberStyleController {
     }
 
     public function sign_up() {
+        $message = "";
         if (isset($_POST["email"])) {
-            $user_id = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
-            if ($user_id === false) {
-                $insert = $this->db->query("insert into users (name, email, password) values (?, ?, ?);", 
-                "sss", $_POST["name"], $_POST["email"], 
-                password_hash($_POST["password"], PASSWORD_DEFAULT));
-                if ($insert === false) {
-                    $error_msg = "Error inserting user";
+            echo "bye";
+            $regex = "/^([a-zA-Z0-9\.]+@+[a-zA-Z]+(\.)+[a-zA-Z]{2,3})$/";
+            if (preg_match($regex, $_POST["email"]) === 1) {
+                $user_id = $this->db->query("select id from Users where email = ?;", "s", $_POST["email"]);
+                print($user_id);
+                if ($user_id === false || empty($user_id)) {
+                    $insert = $this->db->query("insert into users (name, email, password) values (?, ?, ?);", 
+                    "sss", $_POST["name"], $_POST["email"], 
+                    password_hash($_POST["password"], PASSWORD_DEFAULT));
+                    if ($insert === false) {
+                        $error_msg = "Error inserting user";
+                    }
+                    setcookie("logged_in", "true", time() + 3600); 
+                    $_SESSION["name"] = $_POST["name"];
+                    $_SESSION["email"] = $_POST["email"];
+                    header("Location: ?command=wardrobe");
                 }
-                setcookie("logged_in", "true", time() + 3600); 
-                $_SESSION["name"] = $_POST["name"];
-                $_SESSION["email"] = $_POST["email"];
-                header("Location: ?command=wardrobe");
+                else {
+                    $msg = "You already have an account";
+                    $_SESSION["login_error_msg"] = $msg;
+                    header("Location: ?command=login");
+                }
             }
             else {
-                $msg = "You already have an account";
-                $_SESSION["login_error_msg"] = $msg;
-                header("Location: ?command=login");
+                $message = "<div class='alert alert-danger' role='alert'> Invalid Input! Please enter the correct email format using an @. </div>";
             }
         }
-
-        include('templates/sign-up.html');
+       
+        include('templates/sign-up.php');
     }
 
     public function login() {
+        $message = "";
         if (isset($_POST["email"])) {
+            $regex = "/^([a-zA-Z0-9\.]+@+[a-zA-Z]+(\.)+[a-zA-Z]{2,3})$/";
+            if (!preg_match($regex, $_POST["email"])){
+                $message = "<div class='alert alert-danger' role='alert'> Invalid Input! Please enter the correct email format using an @. </div>";
+            }
             $data = $this->db->query("select * from users where email = ?;", "s", $_POST["email"]);
             if ($data === false) {
                 $error_msg = "Error checking for user";
@@ -96,7 +110,6 @@ class CyberStyleController {
         foreach ($array as $i) {
             $rows[] = $i;
         }
-        print json_encode($rows);
         // if (isset($_POST["search"])) {
         //     $search_tag = $_POST["search"];
         //     $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);

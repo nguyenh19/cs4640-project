@@ -57,15 +57,16 @@
                 <form action="?command=sign-up" method="post">
                   <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" required>
                 </div>
                 <div class="form-group">
                     <label for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+                    <input type="text" class="form-control" id="email" name="email" placeholder="Enter email" required>
+                    <?=$message?>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                 </div>
                 <div class="centered-container">
                     <button type="submit" class="btn btn-lg" id="login-button">Create Account</button>
