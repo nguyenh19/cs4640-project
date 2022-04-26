@@ -51,7 +51,7 @@ class CyberStyleController {
             echo "bye";
             $regex = "/^([a-zA-Z0-9\.]+@+[a-zA-Z]+(\.)+[a-zA-Z]{2,3})$/";
             if (preg_match($regex, $_POST["email"]) === 1) {
-                $user_id = $this->db->query("select id from Users where email = ?;", "s", $_POST["email"]);
+                $user_id = $this->db->query("select id from users where email = ?;", "s", $_POST["email"]);
                 print($user_id);
                 if ($user_id === false || empty($user_id)) {
                     $insert = $this->db->query("insert into users (name, email, password) values (?, ?, ?);", 
