@@ -30,7 +30,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ms-auto">
                   <li class="nav-item active">
-                  <a class="nav-link" href="?command=wardrobe">MY CLOSET</a>
+                  <a class="nav-link" href="?command=wardrobe">MY WARDROBE</a>
                   </li>
                   <li class="nav-item">
                   <a class="nav-link" href="#LOOKBOOK">MY LOOKBOOK</a>
@@ -47,7 +47,7 @@
         <div class = "container">
             <div class = "row">
                 <div class = "col d-flex justify-content-center welcome">
-                    <h1 class = "welMessage">WELCOME, <?=$_SESSION["name"]?></h1>
+                    <h1 class = "welMessage">WELCOME, <?=strtoupper($_SESSION["name"])?></h1>
                 </div>
             </div>
         </div>
@@ -77,22 +77,22 @@
                 <h1 class = "mycloset d-flex justify-content-center">MY CLOSET</h1>
                 <div class="container wadrobeSelection">
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 imgs">
-                        <div class="col mt-4">
+                        <div class="col mt-4" id ="tee">
                             <input type="image" src = "images/tee.png" class="img-fluid hi" alt="image">
                         </div>
-                        <div class="col mt-4">
+                        <div class="col mt-4" id = "pants">
                             <input type="image" src = "images/pants.png" class="img-fluid hi" alt="image">
                         </div>
-                        <div class="col mt-4">
+                        <div class="col mt-4" id = "jacket">
                             <input type="image" src = "images/jacket.png" class="img-fluid hi" alt="image">
                         </div>
-                        <div class="col mt-4">
+                        <div class="col mt-4" id = "dress">
                             <input type="image" src = "images/dress.png" class="img-fluid hi" alt="image">
                         </div>
-                        <div class="col mt-4">
+                        <div class="col mt-4" id = "shoes">
                             <input type="image" src = "images/shoes.png" class="img-fluid hi" alt="image">
                         </div>
-                        <div class="col mt-4">
+                        <div class="col mt-4" id = "hat">
                             <input type="image" src = "images/hat.png" class="img-fluid hi" alt="image">
                         </div>
                     </div>
@@ -103,6 +103,44 @@
                 </div>
             </div>
         </div>
+        <script>
+            document.getElementById("tee").addEventListener("mouseover", function() {
+                document.getElementById("tee").style.backgroundColor = "#36454F";
+            });
+            document.getElementById("tee").addEventListener("mouseout", function() {
+                document.getElementById("tee").style.backgroundColor = "";
+            });
+            document.getElementById("pants").addEventListener("mouseover", function() {
+                document.getElementById("pants").style.backgroundColor = "#36454F";
+            });
+            document.getElementById("pants").addEventListener("mouseout", function() {
+                document.getElementById("pants").style.backgroundColor = "";
+            });
+            document.getElementById("jacket").addEventListener("mouseover", function() {
+                document.getElementById("jacket").style.backgroundColor = "#36454F";
+            });
+            document.getElementById("jacket").addEventListener("mouseout", function() {
+                document.getElementById("jacket").style.backgroundColor = "";
+            });
+            document.getElementById("dress").addEventListener("mouseover", function() {
+                document.getElementById("dress").style.backgroundColor = "#36454F";
+            });
+            document.getElementById("dress").addEventListener("mouseout", function() {
+                document.getElementById("dress").style.backgroundColor = "";
+            });
+            document.getElementById("shoes").addEventListener("mouseover", function() {
+                document.getElementById("shoes").style.backgroundColor = "#36454F";
+            });
+            document.getElementById("shoes").addEventListener("mouseout", function() {
+                document.getElementById("shoes").style.backgroundColor = "";
+            });
+            document.getElementById("hat").addEventListener("mouseover", function() {
+                document.getElementById("hat").style.backgroundColor = "#36454F";
+            });
+            document.getElementById("hat").addEventListener("mouseout", function() {
+                document.getElementById("hat").style.backgroundColor = "";
+            });
+        </script>
 
         <!-- Optional JavaScript; choose one of the two! -->
 

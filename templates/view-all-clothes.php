@@ -85,12 +85,12 @@
                     <? if (isset($_SESSION['active-search']) && $_SESSION["active-search"] === true): ?>
                         <?php
                             unset($_SESSION['active-search']);
-                            foreach($applicable_clothes as $piece) {
-                                $image = $piece["picture"];
-                                echo "<div class='col mt-4'>
-                                <input type='image' src='./images/users/{$image}' class='img-fluid hi' alt='image'>
-                                </div>";
-                            }
+                            // foreach($applicable_clothes as $piece) {
+                            //     $image = $piece["picture"];
+                            //     echo "<div class='col mt-4'>
+                            //     <input type='image' src='./images/users/{$image}' class='img-fluid hi' alt='image'>
+                            //     </div>";
+                            // }
                         ?>
                     <? else: ?>
                         <?php 
