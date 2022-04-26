@@ -47,8 +47,8 @@ class CyberStyleController {
 
     public function sign_up() {
         $message = "";
+        $error_msg = ""; 
         if (isset($_POST["email"])) {
-            echo "bye";
             $regex = "/^([a-zA-Z0-9\.]+@+[a-zA-Z]+(\.)+[a-zA-Z]{2,3})$/";
             if (preg_match($regex, $_POST["email"]) === 1) {
                 $user_id = $this->db->query("select id from users where email = ?;", "s", $_POST["email"]);
@@ -66,13 +66,12 @@ class CyberStyleController {
                     header("Location: ?command=wardrobe");
                 }
                 else {
-                    $msg = "You already have an account";
-                    $_SESSION["login_error_msg"] = $msg;
-                    header("Location: ?command=login");
+                    $error_msg = "<div class='alert alert-danger' role='alert'> Error: This account exists! Please login! </div>";
+                    // header("Location: ?command=login");
                 }
             }
             else {
-                $message = "<div class='alert alert-danger' role='alert'> Invalid Input! Please enter the correct email format using an @. </div>";
+                $message = "<div class='alert alert-danger' role='alert'> Error: Invalid Input! Please enter the correct email format using an @. </div>";
             }
         }
        
@@ -81,14 +80,15 @@ class CyberStyleController {
 
     public function login() {
         $message = "";
+        $error_msg = "";
         if (isset($_POST["email"])) {
             $regex = "/^([a-zA-Z0-9\.]+@+[a-zA-Z]+(\.)+[a-zA-Z]{2,3})$/";
             if (!preg_match($regex, $_POST["email"])){
-                $message = "<div class='alert alert-danger' role='alert'> Invalid Input! Please enter the correct email format using an @. </div>";
+                $message = "<div class='alert alert-danger' role='alert'> Error: Invalid Input! Please enter the correct email format using an @. </div>";
             }
             $data = $this->db->query("select * from users where email = ?;", "s", $_POST["email"]);
-            if ($data === false) {
-                $error_msg = "Error checking for user";
+            if (empty($data)) {
+                $error_msg = "<div class='alert alert-danger' role='alert'> Error: Account may not exist! </div>";
             } else if (!empty($data)) {
                 if (password_verify($_POST["password"], $data[0]["password"])) {
                     setcookie("logged_in", "true", time() + 3600);
@@ -96,7 +96,7 @@ class CyberStyleController {
                     $_SESSION['email'] = $data[0]["email"];
                     header("Location: ?command=wardrobe");
                 } else {
-                    $error_msg = "Wrong password";
+                    $error_msg = "<div class='alert alert-danger' role='alert'> Error: Invalid password entered! </div>";
                 }
             }
         }
