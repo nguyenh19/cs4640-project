@@ -57,7 +57,7 @@
                         $data = $this->db->query("select * from clothing where category = 'Hat' and user_id=?", 'i', $user_id[0]["id"]);
                         foreach($data as $piece){
                             $image = $piece["picture"];
-                            echo "<option data-image='./images/users/{$image}' value = '" . $piece["clothing_id"] . "'></option>";
+                            echo "<option id = 'hatimg' data-image='./images/users/{$image}' value = '" . $piece["clothing_id"] . "' class = './images/users/{$image}'></option>";
                         }
                     ?>
                     </select> <br>
@@ -68,7 +68,7 @@
                         $data = $this->db->query("select * from clothing where category = 'Shirt' or category = 'Outerwear' and user_id=?", 'i', $user_id[0]["id"]);
                         foreach($data as $piece){
                             $image = $piece["picture"];
-                            echo "<option data-image='./images/users/{$image}' value = '" . $piece["clothing_id"] . "'></option>";
+                            echo "<option id = 'topimg' data-image='./images/users/{$image}' value = '" . $piece["clothing_id"] . "' class = './images/users/{$image}'></option>";
                         }
                     ?>
                     </select> <br>
@@ -79,7 +79,7 @@
                         $data = $this->db->query("select * from clothing where category = 'Pants' and user_id=?", 'i', $user_id[0]["id"]);
                         foreach($data as $piece){
                             $image = $piece["picture"];
-                            echo "<option data-image='./images/users/{$image}' value = '" . $piece["clothing_id"] . "'></option>";
+                            echo "<option id = 'bottomimg' data-image='./images/users/{$image}' value = '" . $piece["clothing_id"] . "' class = './images/users/{$image}'></option>";
                         }
                     ?>
                     </select> <br>
@@ -90,15 +90,57 @@
                         $data = $this->db->query("select * from clothing where category = 'Shoes' and user_id=?", 'i', $user_id[0]["id"]);
                         foreach($data as $piece){
                             $image = $piece["picture"];
-                            echo "<option data-image='./images/users/{$image}' value = '" . $piece["clothing_id"] . "'></option>";
+                            echo "<option id ='shoesimg' data-image='./images/users/{$image}' value = '" . $piece["clothing_id"] . "' class = './images/users/{$image}'></option>";
                         }
                     ?>
                     </select> <br>
                 </form>
             </div>
             <div class = "col-6 d-flex justify-content-center">
-                
+                <div class="container" style = "margin-top: 50px; margin-left: 100px;"> 
+                    <span id = "hat1"></span> <br><br><br><br><br>
+                    <span id = "top1"></span> <br><br><br><br><br>
+                    <span id = "bottom1"></span> <br><br><br><br><br>
+                    <span id = "shoes1"></span>
+                </div>
             </div>
+            <script>
+                let clothSrc = {
+                    hat: document.getElementById("hatimg").className, 
+                    top: document.getElementById("topimg").className, 
+                    bottom: document.getElementById("bottomimg").className, 
+                    shoes: document.getElementById("shoesimg").className,
+                }
+
+                $('#hat option').each(function() {
+                    if($(this).is(':selected')){
+                        let source = $(this).attr("class"); 
+                        document.getElementById("hat1").innerHTML = "<img style='float: left; width: 100px; height: 100px;' src = '" + source + "'></img>"
+                    }
+                })
+
+                $('#top option').each(function() {
+                    if($(this).is(':selected')){
+                        let source = $(this).attr("class"); 
+                        document.getElementById("top1").innerHTML = "<img style='float: left; width: 100px; height: 100px;' src = '" + source + "'></img>"
+                    }
+                })
+
+                $('#bottom option').each(function() {
+                    if($(this).is(':selected')){
+                        let source = clothSrc.bottom; 
+                        document.getElementById("bottom1").innerHTML = "<img style='float: left; width: 100px; height: 100px;' src = '" + source + "'></img>"
+                    }
+                })
+
+                $('#shoes option').each(function() {
+                    if($(this).is(':selected')){
+                        let source = clothSrc.shoes; 
+                        document.getElementById("shoes1").innerHTML = "<img style='float: left; width: 100px; height: 100px;' src = '" + source + "'></img>"
+                    }
+                })
+
+            </script>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
