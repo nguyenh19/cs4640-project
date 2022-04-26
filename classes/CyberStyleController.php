@@ -30,6 +30,9 @@ class CyberStyleController {
             case "search-clothes":
                 $this->search_clothes();
                 break;
+            case "create-new-outfit":
+                $this -> create_new_outfit();
+                break; 
             case "logout":
                 $this->logout();
             case "login":
@@ -104,12 +107,12 @@ class CyberStyleController {
     }
 
     public function view_all_clothes() {
-        $user = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
-        $array = $this->db->query("select * from clothing where user_id = ?;", "i", $user[0]["id"]);
-        $rows = array();
-        foreach ($array as $i) {
-            $rows[] = $i;
-        }
+        // $user = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
+        // $array = $this->db->query("select * from clothing where user_id = ?;", "i", $user[0]["id"]);
+        // $rows = array();
+        // foreach ($array as $i) {
+        //     $rows[] = $i;
+        // }
         // if (isset($_POST["search"])) {
         //     $search_tag = $_POST["search"];
         //     $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
@@ -120,6 +123,10 @@ class CyberStyleController {
         //     $_SESSION["active-search"] = true;
         // }
         include('templates/view-all-clothes.php');
+    }
+
+    public function create_new_outfit(){
+        include('templates/createNewOutfit.php');
     }
 
     public function search_clothes() {
@@ -137,10 +144,10 @@ class CyberStyleController {
 
     public function delete_from_closet() {
         if (isset($_POST['delete_clothes'])) {
-            $this->db->query("delete from clothing where clothing_id = ?", "i", $clothing_id);
+            $this->db->query("delete from clothing where clothing_id = ?", "i", $_POST['delete_clothes']);
             header("Location: ?command=view-all-clothes");
         }
-        include('templates/delete-from-closet.php');
+        include('templates/view-all-clothes.php');
     }
 
     public function add_to_closet() {

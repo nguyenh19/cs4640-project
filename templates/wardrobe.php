@@ -57,7 +57,7 @@
                     <h1 class = "usability">CLICK ON AN OUTFIT TO VIEW AND CUSTOMIZE</h1>
                     <h1 class = "myfits">MY FITS</h1>
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 fits">
-                        <div class="col mt-4">
+                        <div class="col mt-4" >
                             <input type="image" src = "images/fit.png" class="img-fluid fitted" alt="image">
                         </div>
                         <div class="col mt-4">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div class = "container d-flex justify-content-center fixate">
-                    <button type="button" class="btn btn-dark createOutfit">CREATE NEW OUTFIT</button>
+                    <a href="?command=create-new-outfit" style="width: 75%"><button type="button" class="btn btn-dark createOutfit">CREATE NEW OUTFIT</button></a>
                 </div>
             </div>
             <div class = "col">
