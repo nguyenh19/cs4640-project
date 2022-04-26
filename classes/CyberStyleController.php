@@ -137,9 +137,7 @@ class CyberStyleController {
 
     public function delete_from_closet() {
         if (isset($_POST['delete_clothes'])) {
-            foreach($_POST['delete_clothes'] as $clothing_id) {
-                $this->db->query("delete from clothing where clothing_id = ?", "i", $clothing_id);
-            }
+            $this->db->query("delete from clothing where clothing_id = ?", "i", $clothing_id);
             header("Location: ?command=view-all-clothes");
         }
         include('templates/delete-from-closet.php');

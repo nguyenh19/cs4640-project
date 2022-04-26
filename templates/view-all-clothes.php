@@ -7,6 +7,7 @@
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
         <link rel="stylesheet" href="styles/wardrobe.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="author" content="Hien and Rehan">
         <meta name="description" content="Wardrobe Page">
@@ -44,72 +45,39 @@
               </ul>
             </div>
         </nav>
-       <!-- <div class = "container">
-            <div class = "row">
-                <div class = "col d-flex justify-content-center welcome">
-                    <h1 class = "welMessage">WELCOME, <?=$_SESSION["name"]?></h1>
-                </div>
-            </div>
-        </div>
-        <div class = "row content">
-            <div class = "col">
-                <div class = "container">
-                    <h1 class = "usability">CLICK ON AN OUTFIT TO VIEW AND CUSTOMIZE</h1>
-                    <h1 class = "myfits">MY FITS</h1>
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 fits">
-                        <div class="col mt-4">
-                            <input type="image" src = "images/fit.png" class="img-fluid fitted" alt="image">
-                        </div>
-                        <div class="col mt-4">
-                            <input type="image" src = "images/fit12.png" class="img-fluid fitted" alt="image">
-                        </div>
-                        <div class="col mt-4">
-                            <input type="image" src = "images/fit13.png" class="img-fluid fitted" alt="image">
-                        </div>
-                    </div>
-                </div>
-                <div class = "container d-flex justify-content-center fixate">
-                    <button type="button" class="btn btn-dark createOutfit">CREATE NEW OUTFIT</button>
-                </div>
-            </div>-->
-            <!--<div class = "col">-->
-                <h1 class = "mycloset d-flex justify-content-center">MY PIECES</h1>
-                <div class="container d-flex justify-content-end">
-                <form style="float:right; margin: 20px" action="?command=search-clothes" method="post">
-                    <input id="search" name="search" type="text" placeholder="Search for an item">
-                    <input id="submit" type="submit" value="Search">
-                </form>
-                </div>
-                <div class="container wadrobeSelection">
-                    <div class="row row-cols-md-1 row-cols-md-2 row-cols-md-3 imgs">
-                    <? if (isset($_SESSION['active-search']) && $_SESSION["active-search"] === true): ?>
+        <h1 class = "mycloset d-flex justify-content-center">MY PIECES</h1>
+        <div class="container wadrobeSelection" style = "background-color: #202020">
+        <div class="row" style="margin-top: 20px">
+                <div class="col-xs-8 mx-auto">
+                    <table class="table table-striped table-dark">
+                        <thead>
+                            <tr>
+                            <th scope = "col">Category </th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Image </th>
+                            <th scope="col">Color </th>
+                            <th scope="col">Brand </th>
+                            <th scope="col">Remove </th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         <?php
-                            unset($_SESSION['active-search']);
-                            // foreach($applicable_clothes as $piece) {
-                            //     $image = $piece["picture"];
-                            //     echo "<div class='col mt-4'>
-                            //     <input type='image' src='./images/users/{$image}' class='img-fluid hi' alt='image'>
-                            //     </div>";
-                            // }
-                        ?>
-                    <? else: ?>
-                        <?php 
-                            $user_id = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
-                            $clothes = $this->db->query("select * from clothing where user_id = ?;", "i", $user_id[0]["id"]);
-                            foreach($clothes as $piece) {
-                                $image = $piece["picture"];
-                                echo "<div class='col mt-4'>
-                                <input type='image' src='./images/users/{$image}' class='img-fluid hi' alt='image'>
-                                </div>";
-                            }
-                        ?>
-                    <? endif; ?>
-                    </div>
-                    <div class = "container d-flex justify-content-center">
-                        <a href="?command=delete-from-closet" class="btn btn-dark addToCloset">DELETE ITEMS</a>
-                        <a href="?command=add-to-closet" class="btn btn-dark addToCloset">ADD TO CLOSET</a>
-                    </div>
+                                $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
+                                $clothes = $this->db->query("select * from clothing where user_id = ?;", "i", $user_id[0]["id"]);
+                                foreach($clothes as $piece) {
+                                    $image = $piece["picture"];
+                                    echo "<tr><td>" . $piece["category"] . "</td><td>" . $piece["name"] . "</td><td><input type='image' src='./images/users/{$image}' class='img-fluid hi' style = 'width:200px; height:200px;' alt='image'></td><td>" . $piece["color"] . "</td><td>" . $piece["brand"] . "</td><td><form action='' method='post'>
+                                    <button class = 'btn btn-danger deleteItem' value='" . $piece["clothing_id"] . "'>Remove From Wardrobe</button></form></td></tr>";
+                                }
+
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
+        </div>
+        <div class = "container d-flex justify-content-center">
+                <a href="?command=add-to-closet" class="btn btn-dark addToCloset">ADD TO CLOSET</a>
+        </div>
             <!--</div>-->
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
