@@ -21,6 +21,22 @@ class CyberStyleController {
             case "view-all-clothes":
                 $this->view_all_clothes();
                 break;
+            case "Shirt":
+            case "Dress":
+            case "Pants": 
+            case "Outerwear":
+            case "Shoes":
+            case "Accessories":
+                $this->query_clothes($this->command);
+                break;
+            case "shirts":
+            case "dresses":
+            case "pants":
+            case "outerwear":
+            case "shoes":
+            case "accessories":
+                $this->clothing_by_category($this->command);
+                break;
             case "add-to-closet":
                 $this->add_to_closet();
                 break;
@@ -110,6 +126,7 @@ class CyberStyleController {
         foreach ($array as $i) {
             $rows[] = $i;
         }
+        $json_clothes = json_encode($rows);
         // if (isset($_POST["search"])) {
         //     $search_tag = $_POST["search"];
         //     $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
@@ -122,17 +139,63 @@ class CyberStyleController {
         include('templates/view-all-clothes.php');
     }
 
-    public function search_clothes() {
-        if (isset($_POST["search"])) {
-            $search_tag = $_POST["search"];
-            $user_id = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
-            $user_id = $user_id[0]["id"];
-            $applicable_clothes = $this->db->query("select * from clothing where (user_id = ?) and ((category like ?)
-            or (brand like ?) or (color like ?) or (name like ?));",
-            "issss", $user_id, $search_tag, $search_tag, $search_tag, $search_tag);
-            $_SESSION["active-search"] = true;
+    public function query_clothes($category) {
+        $user = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
+        $array = $this->db->query("select * from clothing where (user_id = ?) and (category = ?);", "is", $user[0]["id"],
+     strval($category));
+        $rows = array();
+        foreach ($array as $i) {
+            $rows[] = $i;
         }
-        include('templates/view-all-clothes.php');
+        header("Content-type: application/json");
+        echo json_encode($rows, JSON_PRETTY_PRINT);
+        //clothing_by_category("shirts");
+        //header("Location: ?command=shirts");
+        //clothing_by_category($category);
+        //include('templates/view-all-' . strtolower($category) . '.php');
+    }
+
+    public function clothing_by_category($category) {
+    //     $user = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
+    //     $array = $this->db->query("select * from clothing where (user_id = ?) and (category = ?);", "is", $user[0]["id"],
+    //  strval($category));
+    //     $rows = array();
+    //     foreach ($array as $i) {
+    //         $rows[] = $i;
+    //     }
+    //     echo json_encode($rows);
+        //$template = 'templates/view-all-' + strtolower($category) + '.php'
+        include('templates/view-all-' . strtolower($category) . '.php');
+    }
+
+    public function search_clothes() {
+        echo isset($_POST['search']);
+        $search_tag = $_POST['search'];
+        echo $search_tag;
+        $user_id = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
+        $user_id = $user_id[0]["id"];
+        $array = $this->db->query("select * from clothing where (user_id = ?) and ((category like ?)
+        or (brand like ?) or (color like ?) or (name like ?));",
+        "issss", $user_id, $search_tag, $search_tag, $search_tag, $search_tag);
+        //print_r($array);
+        $rows = array();
+        foreach ($array as $i) {
+            $rows[] = $i;
+        }
+        print($rows);
+        //print_r($rows);
+        header("Content-type: application/json");
+        echo json_encode($rows, JSON_PRETTY_PRINT);
+        // if (isset($_POST["search"])) {
+        //     $search_tag = $_POST["search"];
+        //     $user_id = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
+        //     $user_id = $user_id[0]["id"];
+        //     $applicable_clothes = $this->db->query("select * from clothing where (user_id = ?) and ((category like ?)
+        //     or (brand like ?) or (color like ?) or (name like ?));",
+        //     "issss", $user_id, $search_tag, $search_tag, $search_tag, $search_tag);
+        //     $_SESSION["active-search"] = true;
+        // }
+        //include('templates/view-all-clothes.php');
     }
 
     public function delete_from_closet() {

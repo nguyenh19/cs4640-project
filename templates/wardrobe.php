@@ -78,22 +78,22 @@
                 <div class="container wadrobeSelection">
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 imgs">
                         <div class="col mt-4">
-                            <input type="image" src = "images/tee.png" class="img-fluid hi" alt="image">
+                            <a href="?command=shirts"><img src = "images/tee.png" class="img-fluid hi" alt="image"></a>
                         </div>
                         <div class="col mt-4">
-                            <input type="image" src = "images/pants.png" class="img-fluid hi" alt="image">
+                            <a href="?command=pants"><img src = "images/pants.png" class="img-fluid hi" alt="image"></a>
                         </div>
                         <div class="col mt-4">
-                            <input type="image" src = "images/jacket.png" class="img-fluid hi" alt="image">
+                            <a href="?command=outerwear"><img src = "images/jacket.png" class="img-fluid hi" alt="image"></a>
                         </div>
                         <div class="col mt-4">
-                            <input type="image" src = "images/dress.png" class="img-fluid hi" alt="image">
+                            <a href="?command=dresses"><img src = "images/dress.png" class="img-fluid hi" alt="image"></a>
                         </div>
                         <div class="col mt-4">
-                            <input type="image" src = "images/shoes.png" class="img-fluid hi" alt="image">
+                            <img src = "images/shoes.png" class="img-fluid hi" alt="image">
                         </div>
                         <div class="col mt-4">
-                            <input type="image" src = "images/hat.png" class="img-fluid hi" alt="image">
+                            <img src = "images/hat.png" class="img-fluid hi" alt="image">
                         </div>
                     </div>
                     <div class = "container d-flex justify-content-center">
