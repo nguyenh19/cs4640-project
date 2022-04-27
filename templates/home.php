@@ -39,6 +39,14 @@
             <a href="?command=sign-up" class="btn btn-dark home" >NEW USER</a>
         </div>
     </div>
+    <script>
+         $(".home").mouseover(function(){
+            $(this).css("background", "#36454F")
+        })
+        $(".home").mouseout(function(){
+            $(this).css("background", "#A30000")
+        })
+    </script>
     <div class="row images">
         <div class="col-8 g-0">
             <img src = "images/thug.png" class="img-fluid thug" alt="image">

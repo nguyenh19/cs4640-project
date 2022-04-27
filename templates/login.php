@@ -57,9 +57,6 @@
         <div class="card border-0" id="login-card">
             <div class="card-body">
                 <form action="?command=login" method="post">
-                <? if (isset($_SESSION['login_error_msg']))?>
-                    <h6><?=$_SESSION['login_error_msg']?></h6>
-                    <?unset($_SESSION['login_error_msg'])?>
                 <div class="form-group">
                     <label for="email">Email address</label>
                     <input type="text" class="form-control" id="email" name="email" placeholder="Enter email">
@@ -74,6 +71,7 @@
                 </div>
                 <div class="centered-container">
                     <button type="submit" class="btn btn-lg" id="login-button">Submit</button>
+                    <?=$error_msg?>
                 </div>
                 </form>
             </div>

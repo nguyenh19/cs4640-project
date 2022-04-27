@@ -46,6 +46,9 @@ class CyberStyleController {
             case "search-clothes":
                 $this->search_clothes();
                 break;
+            case "create-new-outfit":
+                $this -> create_new_outfit();
+                break; 
             case "logout":
                 $this->logout();
             case "login":
@@ -63,8 +66,8 @@ class CyberStyleController {
 
     public function sign_up() {
         $message = "";
+        $error_msg = ""; 
         if (isset($_POST["email"])) {
-            echo "bye";
             $regex = "/^([a-zA-Z0-9\.]+@+[a-zA-Z]+(\.)+[a-zA-Z]{2,3})$/";
             if (preg_match($regex, $_POST["email"]) === 1) {
                 $user_id = $this->db->query("select id from users where email = ?;", "s", $_POST["email"]);
@@ -82,13 +85,12 @@ class CyberStyleController {
                     header("Location: ?command=wardrobe");
                 }
                 else {
-                    $msg = "You already have an account";
-                    $_SESSION["login_error_msg"] = $msg;
-                    header("Location: ?command=login");
+                    $error_msg = "<div class='alert alert-danger' role='alert'> Error: This account exists! Please login! </div>";
+                    // header("Location: ?command=login");
                 }
             }
             else {
-                $message = "<div class='alert alert-danger' role='alert'> Invalid Input! Please enter the correct email format using an @. </div>";
+                $message = "<div class='alert alert-danger' role='alert'> Error: Invalid Input! Please enter the correct email format using an @. </div>";
             }
         }
        
@@ -97,14 +99,15 @@ class CyberStyleController {
 
     public function login() {
         $message = "";
+        $error_msg = "";
         if (isset($_POST["email"])) {
             $regex = "/^([a-zA-Z0-9\.]+@+[a-zA-Z]+(\.)+[a-zA-Z]{2,3})$/";
             if (!preg_match($regex, $_POST["email"])){
-                $message = "<div class='alert alert-danger' role='alert'> Invalid Input! Please enter the correct email format using an @. </div>";
+                $message = "<div class='alert alert-danger' role='alert'> Error: Invalid Input! Please enter the correct email format using an @. </div>";
             }
             $data = $this->db->query("select * from users where email = ?;", "s", $_POST["email"]);
-            if ($data === false) {
-                $error_msg = "Error checking for user";
+            if (empty($data)) {
+                $error_msg = "<div class='alert alert-danger' role='alert'> Error: Account may not exist! </div>";
             } else if (!empty($data)) {
                 if (password_verify($_POST["password"], $data[0]["password"])) {
                     setcookie("logged_in", "true", time() + 3600);
@@ -112,33 +115,22 @@ class CyberStyleController {
                     $_SESSION['email'] = $data[0]["email"];
                     header("Location: ?command=wardrobe");
                 } else {
-                    $error_msg = "Wrong password";
+                    $error_msg = "<div class='alert alert-danger' role='alert'> Error: Invalid password entered! </div>";
                 }
             }
         }
         include('templates/login.php');
     }
 
-    public function view_all_clothes() {
-        $user = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
-        $array = $this->db->query("select * from clothing where user_id = ?;", "i", $user[0]["id"]);
-        $rows = array();
-        foreach ($array as $i) {
-            $rows[] = $i;
-        }
-        $json_clothes = json_encode($rows);
-        // if (isset($_POST["search"])) {
-        //     $search_tag = $_POST["search"];
-        //     $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
-        //     $applicable_clothes = $this->db->query("select * from clothing where (user_id = ?) and ((category like ?)
-        //     or (brand like ?) or (color like ?) or (name like ?));",
-        //     "issss", $user_id, $search_tag, $search_tag, $search_tag, $search_tag);
-        //     print_r($applicable_clothes);
-        //     $_SESSION["active-search"] = true;
-        // }
+    public function view_all_clothes() { 
         include('templates/view-all-clothes.php');
     }
 
+
+    public function create_new_outfit(){
+        include('templates/createNewOutfit.php');
+    }
+  
     public function query_clothes($category) {
         $user = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
         $array = $this->db->query("select * from clothing where (user_id = ?) and (category = ?);", "is", $user[0]["id"],
@@ -200,12 +192,10 @@ class CyberStyleController {
 
     public function delete_from_closet() {
         if (isset($_POST['delete_clothes'])) {
-            foreach($_POST['delete_clothes'] as $clothing_id) {
-                $this->db->query("delete from clothing where clothing_id = ?", "i", $clothing_id);
-            }
+            $this->db->query("delete from clothing where clothing_id = ?", "i", $_POST['delete_clothes']);
             header("Location: ?command=view-all-clothes");
         }
-        include('templates/delete-from-closet.php');
+        include('templates/view-all-clothes.php');
     }
 
     public function add_to_closet() {
