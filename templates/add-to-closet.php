@@ -62,7 +62,7 @@
         </div>
         <div class="card border-0" id="login-card">
             <div class="card-body">
-                <form action="?command=add-to-closet" method="post" enctype="multipart/form-data">
+                <form id="add-piece" action="?command=add-to-closet" method="post" enctype="multipart/form-data">
                   <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" required>
@@ -71,7 +71,7 @@
                     <label for="category">Category</label>
                     <select type="text" class="form-control" name="category" required>
                         <option value="" disabled selected hidden>Choose a Category</option>
-                        <option>Hat</option>
+                        <option>Dress</option>
                         <option>Shirt</option>
                         <option>Outerwear</option>
                         <option>Pants</option>
@@ -103,7 +103,8 @@
                 </div>
                 <div class="form-group">
                     <label for="file">Item Upload</label>
-                    <input type="file" class="form-control" name="file" placeholder="File" required>
+                    <input type="file" id="file" onchange="return validateFile();" class="form-control" name="file" placeholder="File" required>
+                    <div id="file-msg"></div>
                 </div>
                 <div class="centered-container">
                     <button type="submit" class="btn btn-lg" id="login-button">Upload</button>
@@ -112,6 +113,36 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
+<script type="text/javascript">
+    function validateFile() {
+        document.getElementById("file-msg").innerHTML = "";
+        var file = document.getElementById("file");
+        file = file.value;
+
+        var allowedExtensions = 
+                    /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+        if (!allowedExtensions.exec(file)) {
+            document.getElementById("file-msg").innerHTML = "<div class='alert alert-danger'>Please enter a valid image</div>";
+            file.value = '';
+        }
+        // var fileType = file["type"];
+        // var validImageTypes = ["image/gif", "image/jpeg", "image/png"];
+        // if ($.inArray(fileType, validImageTypes) < 0) {
+        //     document.getElementById("file-msg").innerHTML = "<div class='alert alert-danger'>Please enter a valid image</div>";
+        // }
+        return false;
+
+    }
+
+    // $("#add-piece").on("submit", function() {
+    //     var files = document.getElementById("file").value;
+    //     validateFile(files);
+    //     return false;
+    // });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>
 </html>
