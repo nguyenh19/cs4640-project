@@ -65,7 +65,7 @@
                     <select is = "ms-dropdown" id="top" name="top" style = "margin-top: 50px">
                     <?php 
                         $user_id = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
-                        $data = $this->db->query("select * from clothing where category = 'Shirt' or category = 'Outerwear' and user_id=?", 'i', $user_id[0]["id"]);
+                        $data = $this->db->query("select * from clothing where category = 'Shirt' or category = 'Outerwear' or category = 'Dress' and user_id=?", 'i', $user_id[0]["id"]);
                         foreach($data as $piece){
                             $image = $piece["picture"];
                             echo "<option id = '" . $piece["clothing_id"] . "' data-image='./images/users/{$image}' value = './images/users/{$image}' class = './images/users/{$image}'></option>";

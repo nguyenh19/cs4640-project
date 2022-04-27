@@ -71,12 +71,12 @@
                     <label for="category">Category</label>
                     <select type="text" class="form-control" name="category" required>
                         <option value="" disabled selected hidden>Choose a Category</option>
-                        <option>Dress</option>
+                        <option>Hat</option>
                         <option>Shirt</option>
                         <option>Outerwear</option>
                         <option>Pants</option>
                         <option>Shoes</option>
-                        <option>Accessories</option>
+                        <option>Dress</option>
                     </select>
                 </div>
                 <div class="form-group">
