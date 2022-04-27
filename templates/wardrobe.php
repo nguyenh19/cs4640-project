@@ -77,23 +77,23 @@
                 <h1 class = "mycloset d-flex justify-content-center">MY CLOSET</h1>
                 <div class="container wadrobeSelection">
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 imgs">
-                        <div class="col mt-4" id ="tee">
-                            <input type="image" src = "images/tee.png" class="img-fluid hi" alt="image">
+                        <div class="col mt-4">
+                            <a href="?command=shirts"><img src = "images/tee.png" class="img-fluid hi" alt="image"></a>
                         </div>
-                        <div class="col mt-4" id = "pants">
-                            <input type="image" src = "images/pants.png" class="img-fluid hi" alt="image">
+                        <div class="col mt-4">
+                            <a href="?command=pants"><img src = "images/pants.png" class="img-fluid hi" alt="image"></a>
                         </div>
-                        <div class="col mt-4" id = "jacket">
-                            <input type="image" src = "images/jacket.png" class="img-fluid hi" alt="image">
+                        <div class="col mt-4">
+                            <a href="?command=outerwear"><img src = "images/jacket.png" class="img-fluid hi" alt="image"></a>
                         </div>
-                        <div class="col mt-4" id = "dress">
-                            <input type="image" src = "images/dress.png" class="img-fluid hi" alt="image">
+                        <div class="col mt-4">
+                            <a href="?command=dresses"><img src = "images/dress.png" class="img-fluid hi" alt="image"></a>
                         </div>
-                        <div class="col mt-4" id = "shoes">
-                            <input type="image" src = "images/shoes.png" class="img-fluid hi" alt="image">
+                        <div class="col mt-4">
+                            <img src = "images/shoes.png" class="img-fluid hi" alt="image">
                         </div>
-                        <div class="col mt-4" id = "hat">
-                            <input type="image" src = "images/hat.png" class="img-fluid hi" alt="image">
+                        <div class="col mt-4">
+                            <img src = "images/hat.png" class="img-fluid hi" alt="image">
                         </div>
                     </div>
                     <div class = "container d-flex justify-content-center">

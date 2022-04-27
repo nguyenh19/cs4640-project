@@ -30,6 +30,10 @@
   <!-- if you choose to use CDN for CSS bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous"> 
   <link rel="stylesheet" href="styles/login.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -54,7 +58,7 @@
         </div>
         <div class="card border-0" id="login-card">
             <div class="card-body">
-                <form action="?command=sign-up" method="post">
+                <form id="sign-in-form" action="?command=sign-up" method="post">
                   <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" required>
@@ -62,7 +66,7 @@
                 <div class="form-group">
                     <label for="email">Email address</label>
                     <input type="text" class="form-control" id="email" name="email" placeholder="Enter email" required>
-                    <?=$message?>
+                    <div id="msg"></div>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
@@ -79,6 +83,32 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+      const validateEmail = (email) => {
+        return String(email)
+            .toLowerCase()
+            .match("/^([a-zA-Z0-9\.]+@+[a-zA-Z]+(\.)+[a-zA-Z]{2,3})$/");
+        };
+        function validate(email) {
+            //var email1 = document.getElementById("email").value;
+            //var email = $('#email').attr('value');
+            if (!validateEmail(email)){
+                //alert("Please enter a valid email address");
+                document.getElementById("msg").innerHTML = "<div class='alert alert-danger'>Please enter a valid email</div>";
+                
+                // var msg = $('#msg');
+                // msg.className = "alert alert-danger";
+                // msg.innerHTML = "Please enter a valid email";
+                        //"<div class='alert alert-danger'>Please enter a valid email</div>";
+            }
+            return false;
+        }
+        $('#sign-in-form').on('submit', function(){
+            var email = document.getElementById("email").value;
+            validate(email);
+            return false;
+        });
+  </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>
 </html>
