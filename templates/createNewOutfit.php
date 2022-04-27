@@ -49,7 +49,7 @@
         <h1 class = "mycloset d-flex justify-content-center">CREATE NEW OUTFIT</h1>
         <div class = "row">
             <div class = "col-6 d-flex justify-content-center">
-                <form class= "form" style="margin-top: 75px; margin-left: 20px;">
+                <form id = "makeOutfit" class= "form" method = "post" style="margin-top: 50px; margin-left: 20px;">
                     <label for="hat">Choose a hat: </label>
                     <select is="ms-dropdown" id ="hat" name="hat" style = "margin-top: 50px">
                     <?php 
@@ -57,7 +57,7 @@
                         $data = $this->db->query("select * from clothing where category = 'Hat' and user_id=?", 'i', $user_id[0]["id"]);
                         foreach($data as $piece){
                             $image = $piece["picture"];
-                            echo "<option id = 'hatimg' data-image='./images/users/{$image}' value = '" . $piece["clothing_id"] . "' class = './images/users/{$image}'></option>";
+                            echo "<option id = '" . $piece["clothing_id"] . "' data-image='./images/users/{$image}' value = './images/users/{$image}' class = './images/users/{$image}'></option>";
                         }
                     ?>
                     </select> <br>
@@ -68,7 +68,7 @@
                         $data = $this->db->query("select * from clothing where category = 'Shirt' or category = 'Outerwear' and user_id=?", 'i', $user_id[0]["id"]);
                         foreach($data as $piece){
                             $image = $piece["picture"];
-                            echo "<option id = 'topimg' data-image='./images/users/{$image}' value = '" . $piece["clothing_id"] . "' class = './images/users/{$image}'></option>";
+                            echo "<option id = '" . $piece["clothing_id"] . "' data-image='./images/users/{$image}' value = './images/users/{$image}' class = './images/users/{$image}'></option>";
                         }
                     ?>
                     </select> <br>
@@ -79,7 +79,7 @@
                         $data = $this->db->query("select * from clothing where category = 'Pants' and user_id=?", 'i', $user_id[0]["id"]);
                         foreach($data as $piece){
                             $image = $piece["picture"];
-                            echo "<option id = 'bottomimg' data-image='./images/users/{$image}' value = '" . $piece["clothing_id"] . "' class = './images/users/{$image}'></option>";
+                            echo "<option id = '" . $piece["clothing_id"] . "' data-image='./images/users/{$image}' value = './images/users/{$image}' class = './images/users/{$image}'></option>";
                         }
                     ?>
                     </select> <br>
@@ -90,54 +90,58 @@
                         $data = $this->db->query("select * from clothing where category = 'Shoes' and user_id=?", 'i', $user_id[0]["id"]);
                         foreach($data as $piece){
                             $image = $piece["picture"];
-                            echo "<option id ='shoesimg' data-image='./images/users/{$image}' value = '" . $piece["clothing_id"] . "' class = './images/users/{$image}'></option>";
+                            echo "<option id ='" . $piece["clothing_id"] . "' data-image='./images/users/{$image}' value = './images/users/{$image}' class = './images/users/{$image}'></option>";
                         }
                     ?>
                     </select> <br>
+                    <button type="submit" style = "background-color: #A30000; margin-top: 50px; font-family: 'Amehysta'; letter-spacing: 5px;font-size: 20px;height: 50px; width: 400px;" form = "makeOutfit" class="btn btn-dark sendFit">CREATE NEW OUTFIT</button>
                 </form>
             </div>
             <div class = "col-6 d-flex justify-content-center">
-                <div class="container" style = "margin-top: 50px; margin-left: 100px;"> 
+                <div class="container" style = "margin-top: 50px; margin-left: 120px;"> 
+                <h1 style = "font-size: 15px;font-family: 'Amehysta';letter-spacing: 6px;margin-bottom: 20px;">OUTFIT PREVIEW</h1>
                     <span id = "hat1"></span> <br><br><br><br><br>
                     <span id = "top1"></span> <br><br><br><br><br>
                     <span id = "bottom1"></span> <br><br><br><br><br>
                     <span id = "shoes1"></span>
                 </div>
+
             </div>
             <script>
-                let clothSrc = {
-                    hat: document.getElementById("hatimg").className, 
-                    top: document.getElementById("topimg").className, 
-                    bottom: document.getElementById("bottomimg").className, 
-                    shoes: document.getElementById("shoesimg").className,
+                let elementID = {
+                    "hat": "hat1",
+                    "top": "top1",
+                    "bottom": "bottom1",
+                    "shoes": "shoes1"
                 }
 
-                $('#hat option').each(function() {
-                    if($(this).is(':selected')){
-                        let source = $(this).attr("class"); 
-                        document.getElementById("hat1").innerHTML = "<img style='float: left; width: 100px; height: 100px;' src = '" + source + "'></img>"
-                    }
-                })
+                $(document).ready(function(){
+                    $('#hat').change(function() {
+                        let source = $(this).val(); 
+                        document.getElementById(elementID["hat"]).innerHTML = "<img style='float: left; margin-left: 25px; width: 100px; height: 100px;' src = '" + source + "'></img>"
+                    })
 
-                $('#top option').each(function() {
-                    if($(this).is(':selected')){
-                        let source = $(this).attr("class"); 
-                        document.getElementById("top1").innerHTML = "<img style='float: left; width: 100px; height: 100px;' src = '" + source + "'></img>"
-                    }
-                })
+                    $('#top').change(function() {
+                        let source = $(this).val(); 
+                        document.getElementById(elementID["top"]).innerHTML = "<img style='float: left; margin-left: 25px; width: 100px; height: 100px;' src = '" + source + "'></img>"
+                    })
 
-                $('#bottom option').each(function() {
-                    if($(this).is(':selected')){
-                        let source = clothSrc.bottom; 
-                        document.getElementById("bottom1").innerHTML = "<img style='float: left; width: 100px; height: 100px;' src = '" + source + "'></img>"
-                    }
-                })
+                    $('#bottom').change(function() {
+                        let source = $(this).val();
+                        document.getElementById(elementID["bottom"]).innerHTML = "<img style='float: left; margin-left: 25px; width: 100px; height: 100px;' src = '" + source + "'></img>"
+                    })
 
-                $('#shoes option').each(function() {
-                    if($(this).is(':selected')){
-                        let source = clothSrc.shoes; 
-                        document.getElementById("shoes1").innerHTML = "<img style='float: left; width: 100px; height: 100px;' src = '" + source + "'></img>"
-                    }
+                    $('#shoes').change(function() {
+                        let source = $(this).val(); 
+                        document.getElementById(elementID["shoes"]).innerHTML = "<img style='float: left; margin-left: 25px; width: 100px; height: 100px;' src = '" + source + "'></img>"
+                    })
+
+                    $(".sendFit").mouseover(function(){
+                        $(this).css("background", "#36454F")
+                    })
+                    $(".sendFit").mouseout(function(){
+                        $(this).css("background", "#A30000")
+                    })
                 })
 
             </script>
