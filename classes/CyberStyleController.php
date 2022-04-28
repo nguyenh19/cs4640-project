@@ -26,7 +26,7 @@ class CyberStyleController {
             case "Pants": 
             case "Outerwear":
             case "Shoes":
-            case "Accessories":
+            case "Hat":
                 $this->query_clothes($this->command);
                 break;
             case "shirts":
@@ -34,7 +34,7 @@ class CyberStyleController {
             case "pants":
             case "outerwear":
             case "shoes":
-            case "accessories":
+            case "hats":
                 $this->clothing_by_category($this->command);
                 break;
             case "add-to-closet":

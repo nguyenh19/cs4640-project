@@ -11,29 +11,63 @@
         <meta name="author" content="Hien and Rehan">
         <meta name="description" content="Wardrobe Page">
         <meta name="keywords" content="Cyber Style Wardrobe Page">    
-        <title>All Dresses</title>
+        <title>All Shirts</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
         <script type="text/javascript">
+            var activeSearch = false;
             window.onload = function() {
+                $("#search-bar").on("submit", function(e) {
+                e.preventDefault();
+                // var formValues = $(this).serialize();
+                // $.post("?command=search-clothes", formValues, function(data) {
+                //     alert(data);
+                // })
+                // var form = $(this);
+                // console.log(form);
+                // var actionUrl = form.attr('action');
+                // console.log(actionUrl);
+    
+                // $.ajax({
+                //     type: "POST",
+                //     url: actionUrl,
+                //     data: form.serialize(), // serializes the form's elements.
+                //     success: function(data)
+                //     {
+                //     alert(data); // show response from the php script.
+                //     }
+                // });
+                activeSearch = true;
+                // var keyword = document.getElementById("search").value;
+                // $.post("?command=search-clothes", {"search": keyword}).done(function(data){
+                // //     displayShirts(data);
+                // // })
+                search();
+            });
                 loadPage();
             }
 
             async function loadPage(search="") {
-                var ajax = new XMLHttpRequest();
-                var data; 
-                ajax.responseType = "json";
+                if (!activeSearch) {
+                    var ajax = new XMLHttpRequest();
+                    var data; 
+                    ajax.responseType = "json";
 
-                ajax.open("GET", "?command=Dress", true);
+                    ajax.open("GET", "?command=Shoes", true);
 
-                ajax.send(null);
+                    ajax.send(null);
 
-                ajax.addEventListener("load", function() {
-                    if (this.status === 200) {
-                        data = this.response;
-                        console.log(data);
-                        displayShirts(data);
-                    }
-                });
+                    ajax.addEventListener("load", function() {
+                        if (this.status === 200) {
+                            data = this.response;
+                            console.log(data);
+                            displayShirts(data);
+                        }
+                    });
+                }
+            }
 
                 // ajax.onReadyStateChange = function() {
                 //     if (this.readyState === 4 && this.status === 200) {
@@ -46,10 +80,9 @@
                 //     }
                 // }
                 // ajax.send();
-            }
 
             function displayShirts(data) {
-                var list = document.getElementById("dress-list");
+                var list = document.getElementById("shoes-list");
                 data.forEach((shirt) => {
                     var image = shirt['picture'];
                     var newDiv = document.createElement("div");
@@ -63,8 +96,32 @@
                 });
             }
 
+            async function search() {
+                // debugger;
+                var list = document.getElementById("shoes-list");
+                list.innerHTML = "";
+                var data;
+                var ajax = new XMLHttpRequest();
+                ajax.responseType = "json";
+                ajax.open("POST", "?command=search-clothes", true);
+                var keyword = document.getElementById("search").value;
+                ajax.send("search=" + keyword);
+
+                ajax.addEventListener("load", function() {
+                    if (this.status === 200) {
+                        data = this.response;
+                        console.log(data);
+                        displayShirts(data);
+                    }
+                });
+
+
+            }
+
+
+
             function setCategory() {
-                localStorage("category", JSON.stringify({"category": "dresses"}));
+                localStorage.setItem("category", JSON.stringify({"category": "shoes"}));
             }
         </script>
     </head>
@@ -93,15 +150,15 @@
               </ul>
             </div>
         </nav>
-                <h1 class = "mycloset d-flex justify-content-center">MY DRESSES</h1>
+                <h1 class = "mycloset d-flex justify-content-center">MY SHOES</h1>
                 <div class="container d-flex justify-content-end">
-                <form style="float:right; margin: 20px" action="?command=search-clothes" method="post">
+                <form style="float:right; margin: 20px" id="search-bar" action="?command=search-clothes" method="post">
                     <input id="search" name="search" type="text" placeholder="Search for an item">
                     <input id="submit" type="submit" value="Search">
                 </form>
                 </div>
                 <div class="container wadrobeSelection">
-                    <div class="row row-cols-md-1 row-cols-md-2 row-cols-md-3 imgs" id="dress-list">
+                    <div class="row row-cols-md-1 row-cols-md-2 row-cols-md-3 imgs" id="shoes-list">
 
                     </div>
                     <div class = "container d-flex justify-content-center">
