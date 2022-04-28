@@ -55,7 +55,7 @@
                         </thead>
                         <tbody>
                         <?php
-                                $user_id = $this->db->query("select id from Users where email = ?;", "s", $_SESSION["email"]);
+                                $user_id = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
                                 $clothes = $this->db->query("select * from clothing where user_id = ?;", "i", $user_id[0]["id"]);
                                 foreach($clothes as $piece) {
                                     $image = $piece["picture"];
