@@ -128,9 +128,35 @@ class CyberStyleController {
 
 
     public function create_new_outfit(){
+        if(!empty($_POST)){
+            $hatID ="";
+            $topID = "";
+            $bottomID = "";
+            $shoesID = "";
+            if(isset($_POST["hat"])){
+                $hatID = $this -> db -> query("select clothing_id from clothing where picture=?;", "s", $_POST["hat"]);
+                $hatID = $hatID[0]["clothing_id"];
+            }
+            if(isset($_POST["top"])){
+                $topID = $this -> db -> query("select clothing_id from clothing where picture=?;", "s", $_POST["top"]);
+                $topID = $topID[0]["clothing_id"];
+            }
+            if(isset($_POST["bottom"])){
+                $bottomID = $this -> db -> query("select clothing_id from clothing where picture=?;", "s", $_POST["bottom"]);
+                $bottomID = $bottomID[0]["clothing_id"];
+            }
+            if(isset($_POST["shoes"])){
+                $shoesID = $this -> db -> query("select clothing_id from clothing where picture=?;", "s", $_POST["shoes"]);
+                $shoesID = $shoesID[0]["clothing_id"];
+            }
+            $user_id = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
+            $user_id = $user_id[0]["id"];
+            $this -> db -> query("insert into outfits (user_id, hat_id, top_id, bottom_id, shoes_id) values (?, ?, ?, ?, ?);", "iiiii", $user_id, $hatID, $topID, $bottomID, $shoesID);
+            header("Location: ?command=wardrobe");
+        }
         include('templates/createNewOutfit.php');
     }
-  
+
     public function query_clothes($category) {
         $user = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
         $array = $this->db->query("select * from clothing where (user_id = ?) and (category = ?);", "is", $user[0]["id"],
@@ -203,7 +229,7 @@ class CyberStyleController {
             $user_id = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
             $user_id = $user_id[0]["id"];
             $name = "_" . $user_id . "_" . $_FILES['file']['name'];
-            $target_dir = "images/users/";
+            $target_dir = "./images/users";
             $target_file = $target_dir . "_" . $user_id . "_" . basename($_FILES["file"]["name"]);
             $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
             $extensions_arr = array("jpg","jpeg","png","gif");
@@ -212,7 +238,7 @@ class CyberStyleController {
               // Upload file
               if(move_uploaded_file($_FILES['file']['tmp_name'],$target_dir.$name)){
                  // Convert to base64 
-                 $image_base64 = base64_encode(file_get_contents('images/users/'.$name) );
+                 $image_base64 = base64_encode(file_get_contents('./images/users/'.$name) );
                  $image = 'data:image/'.$imageFileType.';base64,'.$image_base64;
               }
             }
