@@ -21,6 +21,9 @@ class CyberStyleController {
             case "view-all-clothes":
                 $this->view_all_clothes();
                 break;
+            case "view-all-outfits":
+                $this->view_all_outfits();
+                break;
             case "Shirt":
             case "Dress":
             case "Pants": 
@@ -120,6 +123,10 @@ class CyberStyleController {
             }
         }
         include('templates/login.php');
+    }
+
+    public function view_all_outfits() {
+        include('templates/view-all-outfits.php');
     }
 
     public function view_all_clothes() { 
@@ -229,7 +236,7 @@ class CyberStyleController {
             $user_id = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
             $user_id = $user_id[0]["id"];
             $name = "_" . $user_id . "_" . $_FILES['file']['name'];
-            $target_dir = "./images/users";
+            $target_dir = "images/users/";
             $target_file = $target_dir . "_" . $user_id . "_" . basename($_FILES["file"]["name"]);
             $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
             $extensions_arr = array("jpg","jpeg","png","gif");
@@ -238,7 +245,7 @@ class CyberStyleController {
               // Upload file
               if(move_uploaded_file($_FILES['file']['tmp_name'],$target_dir.$name)){
                  // Convert to base64 
-                 $image_base64 = base64_encode(file_get_contents('./images/users/'.$name) );
+                 $image_base64 = base64_encode(file_get_contents('images/users/'.$name) );
                  $image = 'data:image/'.$imageFileType.';base64,'.$image_base64;
               }
             }

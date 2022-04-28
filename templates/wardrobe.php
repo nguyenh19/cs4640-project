@@ -64,6 +64,7 @@
                 </div>
                 <div class = "container d-flex justify-content-center fixate">
                     <a href="?command=create-new-outfit" style="width: 75%"><button type="button" class="btn btn-dark createOutfit">CREATE NEW OUTFIT</button></a>
+                    <a href="?command=view-all-outfits" style="width: 75%"><button type="button" class="btn btn-dark createOutfit">VIEW OUTFITS</button></a>
                 </div>
             </div>
             <div class = "col">

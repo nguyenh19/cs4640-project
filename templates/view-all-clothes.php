@@ -59,7 +59,7 @@
                                 $clothes = $this->db->query("select * from clothing where user_id = ?;", "i", $user_id[0]["id"]);
                                 foreach($clothes as $piece) {
                                     $image = $piece["picture"];
-                                    echo "<tr><td>" . $piece["category"] . "</td><td>" . $piece["name"] . "</td><td><input type='image' src='./images/users/{$image}' class='img-fluid hi' style = 'width:200px; height:200px;' alt='image'></td><td>" . $piece["color"] . "</td><td>" . $piece["brand"] . "</td><td><form id='form1' method='post' action='?command=delete-from-closet'>
+                                    echo "<tr><td>" . $piece["category"] . "</td><td>" . $piece["name"] . "</td><td><input type='image' src='./images/users/{$image}' alt='./images/high_squidward.png' class='img-fluid hi' style = 'width:200px; height:200px;' alt='image'></td><td>" . $piece["color"] . "</td><td>" . $piece["brand"] . "</td><td><form id='form1' method='post' action='?command=delete-from-closet'>
                                     <button class = 'btn btn-danger deleteItem' name = 'delete_clothes' form = 'form1' type = 'submit' value='" . $piece["clothing_id"] . "'>Remove From Wardrobe</button></form></td></tr>";
                                 }
 
