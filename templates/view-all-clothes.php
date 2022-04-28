@@ -33,12 +33,6 @@
                   <a class="nav-link" href="?command=wardrobe">MY WARDROBE</a>
                   </li>
                   <li class="nav-item">
-                  <a class="nav-link" href="#LOOKBOOK">MY LOOKBOOK</a>
-                  </li>
-                  <li class="nav-item">
-                  <a class="nav-link" href = '#WISHLIST'>MY WISHLIST</a>
-                  </li>
-                  <li class="nav-item">
                   <a class="nav-link" href = '?command=logout'>LOGOUT</a>
                   </li>
               </ul>
