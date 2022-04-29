@@ -112,17 +112,17 @@
                 $(document).ready(function(){
                     $('#hat').change(function() {
                         let source = $(this).val(); 
-                        document.getElementById(elementID["hat"]).innerHTML = "<img style='float: left; margin-left: 25px; width: 100px; height: 100px;' src = '" + source + "'></img>"
+                        document.getElementById(elementID["hat"]).innerHTML = "<img style='float: left; margin-left: 25px; width: 100px; height: 100px;object-fit:cover' src = '" + source + "'></img>"
                     })
 
                     $('#top').change(function() {
                         let source = $(this).val(); 
-                        document.getElementById(elementID["top"]).innerHTML = "<img style='float: left; margin-left: 25px; width: 100px; height: 100px;' src = '" + source + "'></img>"
+                        document.getElementById(elementID["top"]).innerHTML = "<img style='float: left; margin-left: 25px; width: 100px; height: 100px;object-fit:cover' src = '" + source + "'></img>"
                     })
 
                     $('#bottom').change(function() {
                         let source = $(this).val();
-                        document.getElementById(elementID["bottom"]).innerHTML = "<img style='float: left; margin-left: 25px; width: 100px; height: 100px;' src = '" + source + "'></img>"
+                        document.getElementById(elementID["bottom"]).innerHTML = "<img style='float: left; margin-left: 25px; width: 100px; height: 100px;object-fit:cover' src = '" + source + "'></img>"
                     })
 
                     $('#shoes').change(function() {
