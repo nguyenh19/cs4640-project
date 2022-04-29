@@ -51,7 +51,7 @@
                         $data = $this->db->query("select * from clothing where category = 'Hat' and user_id=?", 'i', $user_id[0]["id"]);
                         foreach($data as $piece){
                             $image = $piece["picture"];
-                            echo "<option id = '" . $piece["clothing_id"] . "' data-image='./images/users/{$image}' value = '{$image}' class = './images/users/{$image}'></option>";
+                            echo "<option id = '" . $piece["clothing_id"] . "' data-image='{$image}' value = '{$image}' class = '{$image}'></option>";
                         }
                     ?>
                     </select> <br>
@@ -62,7 +62,7 @@
                         $data = $this->db->query("select * from clothing where category = 'Shirt' or category = 'Outerwear' or category = 'Dress' and user_id=?", 'i', $user_id[0]["id"]);
                         foreach($data as $piece){
                             $image = $piece["picture"];
-                            echo "<option id = '" . $piece["clothing_id"] . "' data-image='./images/users/{$image}' value = '{$image}' class = './images/users/{$image}'></option>";
+                            echo "<option id = '" . $piece["clothing_id"] . "' data-image='{$image}' value = '{$image}' class = './images/users/{$image}'></option>";
                         }
                     ?>
                     </select> <br>
@@ -73,7 +73,7 @@
                         $data = $this->db->query("select * from clothing where category = 'Pants' and user_id=?", 'i', $user_id[0]["id"]);
                         foreach($data as $piece){
                             $image = $piece["picture"];
-                            echo "<option id = '" . $piece["clothing_id"] . "' data-image='./images/users/{$image}' value = '{$image}' class = './images/users/{$image}'></option>";
+                            echo "<option id = '" . $piece["clothing_id"] . "' data-image='{$image}' value = '{$image}' class = './images/users/{$image}'></option>";
                         }
                     ?>
                     </select> <br>
@@ -84,7 +84,7 @@
                         $data = $this->db->query("select * from clothing where category = 'Shoes' and user_id=?", 'i', $user_id[0]["id"]);
                         foreach($data as $piece){
                             $image = $piece["picture"];
-                            echo "<option id ='" . $piece["clothing_id"] . "' data-image='./images/users/{$image}' value = '{$image}' class = './images/users/{$image}'></option>";
+                            echo "<option id ='" . $piece["clothing_id"] . "' data-image='{$image}' value = '{$image}' class = './images/users/{$image}'></option>";
                         }
                     ?>
                     </select> <br>
@@ -111,22 +111,22 @@
 
                 $(document).ready(function(){
                     $('#hat').change(function() {
-                        let source = './images/users/' + $(this).val(); 
+                        let source = $(this).val(); 
                         document.getElementById(elementID["hat"]).innerHTML = "<img style='float: left; margin-left: 25px; width: 100px; height: 100px;' src = '" + source + "'></img>"
                     })
 
                     $('#top').change(function() {
-                        let source = './images/users/' + $(this).val(); 
+                        let source = $(this).val(); 
                         document.getElementById(elementID["top"]).innerHTML = "<img style='float: left; margin-left: 25px; width: 100px; height: 100px;' src = '" + source + "'></img>"
                     })
 
                     $('#bottom').change(function() {
-                        let source = './images/users/' + $(this).val();
+                        let source = $(this).val();
                         document.getElementById(elementID["bottom"]).innerHTML = "<img style='float: left; margin-left: 25px; width: 100px; height: 100px;' src = '" + source + "'></img>"
                     })
 
                     $('#shoes').change(function() {
-                        let source = './images/users/' + $(this).val(); 
+                        let source = $(this).val(); 
                         document.getElementById(elementID["shoes"]).innerHTML = "<img style='float: left; margin-left: 25px; width: 100px; height: 100px;' src = '" + source + "'></img>"
                     })
 

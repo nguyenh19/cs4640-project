@@ -55,19 +55,20 @@
                     $bottom = $this->db->query("select * from clothing where clothing_id = ?;", "i", $bottom_id);
                     $shoes = $this->db->query("select * from clothing where clothing_id = ?;", "i", $shoes_id);
 
-                    echo "<div class='container' style = 'margin-top: 50px; margin-left: 120px;'>";
+                    if($hat != null){
+                        echo "<div class='container' style = 'margin-top: 50px; margin-left: 120px;'>";
 
 
-                    $hat_pic = $hat[0]["picture"];
-                    $squid = "/images/high_squidward.png";
+                        $hat_pic = $hat[0]["picture"];
 
-                    echo "<span><img style='width:100px; height:100px' src='./images/users/{$hat_pic}' alt='./images/high_squidward.png' class='img-fluid hi'</span> <br><br><br>";
-                    echo "<span><img style='width:100px; height:100px' src='./images/users/{$top[0]["picture"]}' alt='./images/high_squidward.png' class='img-fluid hi'</span> <br><br><br>";
-                    echo "<span><img style='width:100px; height:100px' src='./images/users/{$bottom[0]["picture"]}' alt='./images/high_squidward.png' class='img-fluid hi'</span> <br><br><br>";
-                    echo "<span><img style='width:100px; height:100px' src='./images/users/{$shoes[0]["picture"]}' alt='./images/high_squidward.png' class='img-fluid hi'</span> <br><br><br>";
+                        echo "<span><img style='width:100px; height:100px' src='{$hat_pic}' class='img-fluid hi'</span> <br><br><br>";
+                        echo "<span><img style='width:100px; height:100px' src='{$top[0]["picture"]}'  class='img-fluid hi'</span> <br><br><br>";
+                        echo "<span><img style='width:100px; height:100px' src='{$bottom[0]["picture"]}' class='img-fluid hi'</span> <br><br><br>";
+                        echo "<span><img style='width:100px; height:100px' src='{$shoes[0]["picture"]}'  class='img-fluid hi'</span> <br><br><br>";
 
 
-                    echo "</div>";
+                        echo "</div>";
+                    }
                 }
                 ?>
 

@@ -55,7 +55,7 @@
                     var newDiv = document.createElement("div");
                     newDiv.classList.add('col', 'mt-4');
                     var curShirt = document.createElement("img");
-                    curShirt.src = './images/users/' + image;
+                    curShirt.src = image;
                     curShirt.classList.add('img-fluid', 'hi');
                     //curShirt.class hi');
                     newDiv.appendChild(curShirt);
