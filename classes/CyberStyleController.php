@@ -140,6 +140,7 @@ class CyberStyleController {
             $topID = "";
             $bottomID = "";
             $shoesID = "";
+            //Grab the different ids from the different clothing items and put them together
             if(isset($_POST["hat"])){
                 $hatID = $this -> db -> query("select clothing_id from clothing where picture=?;", "s", $_POST["hat"]);
                 $hatID = $hatID[0]["clothing_id"];
