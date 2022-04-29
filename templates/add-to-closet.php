@@ -115,6 +115,7 @@
                         <div id="file-msg"></div>
                     </div>
                     <div class="centered-container">
+                        <p style = "text-align: left"> To obtain a URL of your desired image try a quick Google search, right click on an image, and click "Copy image address" </p>
                         <button type="submit" class="btn btn-lg" id="login-button">Upload</button>
                     </div>
                 </form>
