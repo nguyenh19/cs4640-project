@@ -30,7 +30,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ms-auto">
                   <li class="nav-item active">
-                  <a class="nav-link" href="?command=wardrobe">MY CLOSET</a>
+                  <a class="nav-link" href="?command=wardrobe">MY WARDROBE</a>
                   </li>
                   <li class="nav-item">
                   <a class="nav-link" href = '?command=logout'>LOGOUT</a>
@@ -48,8 +48,8 @@
         <div class = "row content">
             <div class = "col">
                 <div class = "container">
-                    <h1 class = "usability" style="font-size:16px;">CLICK ON AN OUTFIT TO VIEW AND CUSTOMIZE</h1>
-                    <h1 class = "myfits">MY FITS</h1>
+                    <h1 class = "usability" style="font-size:16px;">CLICK "CREATE NEW OUTFIT" TO START STYLING</h1>
+                    <h1 class = "myfits">FIT IDEAS</h1>
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 fits">
                         <div class="col mt-4" >
                             <input type="image" src = "images/fit.png" class="img-fluid fitted" alt="image">
