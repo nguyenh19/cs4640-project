@@ -30,13 +30,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ms-auto">
                   <li class="nav-item active">
-                  <a class="nav-link" href="#CLOSET">MY CLOSET</a>
-                  </li>
-                  <li class="nav-item">
-                  <a class="nav-link" href="#LOOKBOOK">MY LOOKBOOK</a>
-                  </li>
-                  <li class="nav-item">
-                  <a class="nav-link" href = '#WISHLIST'>MY WISHLIST</a>
+                  <a class="nav-link" href="?command=wardrobe">MY WARDROBE</a>
                   </li>
                   <li class="nav-item">
                   <a class="nav-link" href = '?command=logout'>LOGOUT</a>
@@ -75,7 +69,7 @@
             <!--<div class = "col">-->
                 <h1 class = "mycloset d-flex justify-content-center">MY PIECES</h1>
                 <div class="container wadrobeSelection">
-                <form action="?command=delete-from-closet" method="post">
+                <form id="delete-clothes" onsubmit="return confirm('Are you sure you want to delete these items?');" action="?command=delete-from-closet" method="post">
                     <div class="row row-cols-md-1 row-cols-md-2 row-cols-md-3 imgs">
                         <?php 
                             $user_id = $this->db->query("select id from users where email = ?;", "s", $_SESSION["email"]);
@@ -93,12 +87,37 @@
                     </div>
                     <div class = "container d-flex justify-content-center">
                         <a href="?command=view-all-clothes" class="btn btn-dark addToCloset">BACK</a>
-                        <button type="submit" valuse="submit" class="btn btn-dark addToCloset">DELETE ITEMS</button>
+                        <button type="submit" value="submit" class="btn btn-dark addToCloset">DELETE ITEMS</button>
                     </div>
                 </form>
                 </div>
             <!--</div>-->
         </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
+<script type="text/javascript">
+    // function confirmDeletion() {
+    //     document.getElementById("file-msg").innerHTML = "";
+    //     var file = document.getElementById("file");
+    //     file = file.value;
+
+    //     var allowedExtensions = 
+    //                 /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+    //     if (!allowedExtensions.exec(file)) {
+    //         document.getElementById("file-msg").innerHTML = "<div class='alert alert-danger'>Please enter a valid image</div>";
+    //         file.value = '';
+    //     }
+    //     return false;
+
+    // }
+
+    // $("#add-piece").on("submit", function() {
+    //     var files = document.getElementById("file").value;
+    //     validateFile(files);
+    //     return false;
+    // });
+</script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     </body>
 </html>
