@@ -61,7 +61,7 @@
 
                         $hat_pic = $hat[0]["picture"];
 
-                        echo "<span><img style='width:100px; height:100px; object-fit:cover' src='{$hat_pic}' class='img-fluid hi'</span> <br><br>";
+                        echo "<span><img style='width:100px; height:100px;' src='{$hat_pic}' class='img-fluid hi'</span> <br><br>";
                         echo "<span><img style='width:100px; height:100px; object-fit:cover' src='{$top[0]["picture"]}'  class='img-fluid hi'</span> <br><br>";
                         echo "<span><img style='width:100px; height:100px; object-fit:cover' src='{$bottom[0]["picture"]}' class='img-fluid hi'</span> <br><br>";
                         echo "<span><img style='width:100px; height:100px;' src='{$shoes[0]["picture"]}'  class='img-fluid hi'</span> <br><br>";

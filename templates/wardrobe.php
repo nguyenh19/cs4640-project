@@ -52,13 +52,13 @@
                     <h1 class = "myfits">FIT IDEAS</h1>
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 fits">
                         <div class="col mt-4" >
-                            <input type="image" src = "images/fit.png" class="img-fluid fitted" alt="image">
+                            <input type="image" src = "images/fit1.png" style = "width:100%" class="img-fluid fitted" alt="image">
                         </div>
                         <div class="col mt-4">
-                            <input type="image" src = "images/fit12.png" class="img-fluid fitted" alt="image">
+                            <input type="image" src = "images/fit112.png" style = "width:100%" class="img-fluid fitted" alt="image">
                         </div>
                         <div class="col mt-4">
-                            <input type="image" src = "images/fit13.png" class="img-fluid fitted" alt="image">
+                            <input type="image" src = "images/fit113.png" style = "width:100%" class="img-fluid fitted" alt="image">
                         </div>
                     </div>
                 </div>
@@ -73,22 +73,22 @@
                 <div class="container wadrobeSelection">
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 imgs">
                         <div class="col mt-4" id="tee">
-                            <a href="?command=shirts"><img src = "images/tee.png" class="img-fluid hi" alt="image"></a>
+                            <a href="?command=shirts"><img src = "images/tee1.png" class="img-fluid hi" alt="image"></a>
                         </div>
                         <div class="col mt-4" id="pants">
-                            <a href="?command=pants"><img src = "images/pants.png" class="img-fluid hi" alt="image"></a>
+                            <a href="?command=pants"><img src = "images/pants1.png" class="img-fluid hi" alt="image"></a>
                         </div>
                         <div class="col mt-4" id="jacket">
-                            <a href="?command=outerwear"><img src = "images/jacket.png" class="img-fluid hi" alt="image"></a>
+                            <a href="?command=outerwear"><img src = "images/jacket1.png" class="img-fluid hi" alt="image"></a>
                         </div>
                         <div class="col mt-4" id="dress">
-                            <a href="?command=dresses"><img src = "images/dress.png" class="img-fluid hi" alt="image"></a>
+                            <a href="?command=dresses"><img src = "images/dress1.png" class="img-fluid hi" alt="image"></a>
                         </div>
                         <div class="col mt-4" id="shoes">
-                            <a href="?command=shoes"><img src = "images/shoes.png" class="img-fluid hi" alt="image"></a>
+                            <a href="?command=shoes"><img src = "images/shoes1.png" class="img-fluid hi" alt="image"></a>
                         </div>
                         <div class="col mt-4" id="hat">
-                            <a href="?command=hats"><img src = "images/hat.png" class="img-fluid hi" alt="image"></a>
+                            <a href="?command=hats"><img src = "images/hat1.png" class="img-fluid hi" alt="image"></a>
                         </div>
                     </div>
                     <div class = "container d-flex justify-content-center">
