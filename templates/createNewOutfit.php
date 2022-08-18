@@ -92,7 +92,7 @@
                 </form>
             </div>
             <div class = "col-6 d-flex justify-content-center">
-                <div class="container" style = "margin-top: 50px; margin-left: 120px;"> 
+                <div class="container" style = "margin-top: 10px; margin-left: 180px;"> 
                 <h1 style = "font-size: 15px;font-family: 'Amehysta';letter-spacing: 6px;margin-bottom: 20px;">OUTFIT PREVIEW</h1>
                     <span id = "hat1"></span> <br><br><br><br><br>
                     <span id = "top1"></span> <br><br><br><br><br>
@@ -112,22 +112,22 @@
                 $(document).ready(function(){
                     $('#hat').change(function() {
                         let source = $(this).val(); 
-                        document.getElementById(elementID["hat"]).innerHTML = "<img style='float: left; margin-left: 25px; width: 100px; height: 100px;object-fit:cover' src = '" + source + "'></img>"
+                        document.getElementById(elementID["hat"]).innerHTML = "<img style='float: left; margin-left: 65px; width: 100px; height: 100px;' src = '" + source + "'></img>"
                     })
 
                     $('#top').change(function() {
                         let source = $(this).val(); 
-                        document.getElementById(elementID["top"]).innerHTML = "<img style='float: left; margin-left: 25px; width: 100px; height: 100px;object-fit:cover' src = '" + source + "'></img>"
+                        document.getElementById(elementID["top"]).innerHTML = "<img style='float: left; margin-top: -30px; margin-left: 20px; margin-right: 500px; width: 200px; height: 200px;' src = '" + source + "'></img>"
                     })
 
                     $('#bottom').change(function() {
                         let source = $(this).val();
-                        document.getElementById(elementID["bottom"]).innerHTML = "<img style='float: left; margin-left: 25px; width: 100px; height: 100px;object-fit:cover' src = '" + source + "'></img>"
+                        document.getElementById(elementID["bottom"]).innerHTML = "<img style='float: left; margin-right: 500px; width: 250px; height: 250px;' src = '" + source + "'></img>"
                     })
 
                     $('#shoes').change(function() {
                         let source = $(this).val(); 
-                        document.getElementById(elementID["shoes"]).innerHTML = "<img style='float: left; margin-left: 25px; width: 100px; height: 100px;' src = '" + source + "'></img>"
+                        document.getElementById(elementID["shoes"]).innerHTML = "<img style='float: left; margin-left: 30px; width: 150px; height: 100px;' src = '" + source + "'></img>"
                     })
 
                     $(".sendFit").mouseover(function(){

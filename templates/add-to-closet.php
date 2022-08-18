@@ -72,7 +72,6 @@
                         <input type="text" class="form-control" id="name" name="name" placeholder="Enter name" required>
                     </div>
                     <div class="form-group">
-                        <!-- creates the different options for the form saves the image as a url path so that it can be registered on site -->
                         <label for="category">Category</label>
                         <select type="text" class="form-control" name="category" required>
                             <option value="" disabled selected hidden>Choose a Category</option>
@@ -116,7 +115,7 @@
                         <div id="file-msg"></div>
                     </div>
                     <div class="centered-container">
-                        <p style = "text-align: left"> To obtain a URL of your desired image try a quick Google search, right click on an image, and click "Copy image address" </p>
+                        <p style = "text-align: left"> To obtain a URL of your desired image try a quick Google search, right click on an image, and click "Copy image address" <br> (**NOTE: UPLOAD IMAGE WITH WHITE BACKGROUND**) </p>
                         <button type="submit" class="btn btn-lg" id="login-button">Upload</button>
                     </div>
                 </form>
