@@ -49,10 +49,10 @@
     </script>
     <div class="row images">
         <div class="col-8 g-0">
-            <img src = "images/thug.png" class="img-fluid thug" alt="image">
+            <img src = "images/thug1.png" class="img-fluid thug" alt="image">
         </div>
         <div class="col-4 g-0">
-            <img src = "images/girl.png" class="img-fluid girl" alt="image">
+            <img src = "images/girl1.png" class="img-fluid girl" alt="image">
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>

@@ -88,7 +88,7 @@
                         }
                     ?>
                     </select> <br>
-                    <button type="submit" style = "background-color: #A30000; margin-top: 50px; font-family: 'Amehysta'; letter-spacing: 5px;font-size: 20px;height: 50px; width: 400px;" form = "makeOutfit" class="btn btn-dark sendFit">CREATE NEW OUTFIT</button>
+                    <button type="submit" style = "background-color: #a0764f; margin-top: 50px; font-family: 'Amehysta'; letter-spacing: 5px;font-size: 20px;height: 50px; width: 400px;" form = "makeOutfit" class="btn btn-dark sendFit">CREATE NEW OUTFIT</button>
                 </form>
             </div>
             <div class = "col-6 d-flex justify-content-center">
